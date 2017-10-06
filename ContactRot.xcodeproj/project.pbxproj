@@ -63,6 +63,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D91AD751F881B2800645D0F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8DE0DD881F86DB0D00C5E0E2 /* ContactListViewController.swift */,
+			);
+			name = Controllers;
+			path = Classes/Controllers;
+			sourceTree = "<group>";
+		};
 		8DE0DD7A1F86DB0D00C5E0E2 = {
 			isa = PBXGroup;
 			children = (
@@ -86,9 +95,9 @@
 		8DE0DD851F86DB0D00C5E0E2 /* ContactRot */ = {
 			isa = PBXGroup;
 			children = (
+				8D91AD751F881B2800645D0F /* Controllers */,
 				8DE0DDA91F86E27400C5E0E2 /* Data Providers */,
 				8DE0DD861F86DB0D00C5E0E2 /* AppDelegate.swift */,
-				8DE0DD881F86DB0D00C5E0E2 /* ContactListViewController.swift */,
 				8DE0DD901F86DB0D00C5E0E2 /* Assets.xcassets */,
 				8DE0DD921F86DB0D00C5E0E2 /* LaunchScreen.storyboard */,
 				8DE0DD951F86DB0D00C5E0E2 /* Info.plist */,
