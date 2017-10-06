@@ -16,10 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-
         if let window = self.window {
             let contactList: ContactListViewController = ContactListViewController()
-            window.rootViewController = contactList
+            let navigationController = UINavigationController(rootViewController: contactList)
+            window.rootViewController = navigationController
             window.makeKeyAndVisible()
         }
 
