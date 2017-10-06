@@ -13,6 +13,8 @@
 		8DE0DD911F86DB0D00C5E0E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DE0DD901F86DB0D00C5E0E2 /* Assets.xcassets */; };
 		8DE0DD941F86DB0D00C5E0E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DE0DD921F86DB0D00C5E0E2 /* LaunchScreen.storyboard */; };
 		8DE0DD9F1F86DB0D00C5E0E2 /* ContactRotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE0DD9E1F86DB0D00C5E0E2 /* ContactRotTests.swift */; };
+		8DE0DDAB1F86E2B800C5E0E2 /* ContactListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE0DDAA1F86E2B800C5E0E2 /* ContactListDataProvider.swift */; };
+		F9C7E674D228A80EA8BF5503 /* Pods_ContactRot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A70E36A5C822964B04B45864 /* Pods_ContactRot.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B4D19040C50674C57EB6510 /* Pods-ContactRot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactRot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ContactRot/Pods-ContactRot.debug.xcconfig"; sourceTree = "<group>"; };
+		3AC6EB0362F55524C8A0DDCF /* Pods-ContactRot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactRot.release.xcconfig"; path = "Pods/Target Support Files/Pods-ContactRot/Pods-ContactRot.release.xcconfig"; sourceTree = "<group>"; };
 		8DE0DD831F86DB0D00C5E0E2 /* ContactRot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactRot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DE0DD861F86DB0D00C5E0E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DE0DD881F86DB0D00C5E0E2 /* ContactListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListViewController.swift; sourceTree = "<group>"; };
@@ -36,6 +40,8 @@
 		8DE0DD9A1F86DB0D00C5E0E2 /* ContactRotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactRotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DE0DD9E1F86DB0D00C5E0E2 /* ContactRotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRotTests.swift; sourceTree = "<group>"; };
 		8DE0DDA01F86DB0D00C5E0E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8DE0DDAA1F86E2B800C5E0E2 /* ContactListDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactListDataProvider.swift; sourceTree = "<group>"; };
+		A70E36A5C822964B04B45864 /* Pods_ContactRot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ContactRot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9C7E674D228A80EA8BF5503 /* Pods_ContactRot.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +69,8 @@
 				8DE0DD851F86DB0D00C5E0E2 /* ContactRot */,
 				8DE0DD9D1F86DB0D00C5E0E2 /* ContactRotTests */,
 				8DE0DD841F86DB0D00C5E0E2 /* Products */,
+				B8066D68013632087297203A /* Pods */,
+				A7DC49914E03DE76E9C8D368 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,6 +86,7 @@
 		8DE0DD851F86DB0D00C5E0E2 /* ContactRot */ = {
 			isa = PBXGroup;
 			children = (
+				8DE0DDA91F86E27400C5E0E2 /* Data Providers */,
 				8DE0DD861F86DB0D00C5E0E2 /* AppDelegate.swift */,
 				8DE0DD881F86DB0D00C5E0E2 /* ContactListViewController.swift */,
 				8DE0DD901F86DB0D00C5E0E2 /* Assets.xcassets */,
@@ -96,6 +106,32 @@
 			path = ContactRotTests;
 			sourceTree = "<group>";
 		};
+		8DE0DDA91F86E27400C5E0E2 /* Data Providers */ = {
+			isa = PBXGroup;
+			children = (
+				8DE0DDAA1F86E2B800C5E0E2 /* ContactListDataProvider.swift */,
+			);
+			name = "Data Providers";
+			path = Classes/DataProviders;
+			sourceTree = "<group>";
+		};
+		A7DC49914E03DE76E9C8D368 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A70E36A5C822964B04B45864 /* Pods_ContactRot.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B8066D68013632087297203A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0B4D19040C50674C57EB6510 /* Pods-ContactRot.debug.xcconfig */,
+				3AC6EB0362F55524C8A0DDCF /* Pods-ContactRot.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -103,9 +139,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8DE0DDA31F86DB0D00C5E0E2 /* Build configuration list for PBXNativeTarget "ContactRot" */;
 			buildPhases = (
+				F713486BB72DEC6A7CB96E8C /* [CP] Check Pods Manifest.lock */,
 				8DE0DD7F1F86DB0D00C5E0E2 /* Sources */,
 				8DE0DD801F86DB0D00C5E0E2 /* Frameworks */,
 				8DE0DD811F86DB0D00C5E0E2 /* Resources */,
+				455DD45EF689213553485CF9 /* [CP] Embed Pods Frameworks */,
+				779B127EB629E3D70A0ED9B8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -193,12 +232,61 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		455DD45EF689213553485CF9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ContactRot/Pods-ContactRot-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		779B127EB629E3D70A0ED9B8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ContactRot/Pods-ContactRot-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F713486BB72DEC6A7CB96E8C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8DE0DD7F1F86DB0D00C5E0E2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				8DE0DD891F86DB0D00C5E0E2 /* ContactListViewController.swift in Sources */,
+				8DE0DDAB1F86E2B800C5E0E2 /* ContactListDataProvider.swift in Sources */,
 				8DE0DD871F86DB0D00C5E0E2 /* AppDelegate.swift in Sources */,
 				8DE0DD8F1F86DB0D00C5E0E2 /* ContactRot.xcdatamodeld in Sources */,
 			);
@@ -329,6 +417,7 @@
 		};
 		8DE0DDA41F86DB0D00C5E0E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B4D19040C50674C57EB6510 /* Pods-ContactRot.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ContactRot/Info.plist;
@@ -341,6 +430,7 @@
 		};
 		8DE0DDA51F86DB0D00C5E0E2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3AC6EB0362F55524C8A0DDCF /* Pods-ContactRot.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ContactRot/Info.plist;
