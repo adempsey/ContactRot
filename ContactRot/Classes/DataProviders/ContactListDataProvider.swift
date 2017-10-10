@@ -14,7 +14,7 @@ class ContactListDataProvider: NSObject {
     private let keysToFetch: [CNKeyDescriptor] = [CNContactGivenNameKey as CNKeyDescriptor,
                                                   CNContactFamilyNameKey as CNKeyDescriptor]
 
-    private var contacts: [CNContact] = Array()
+    private var contacts: [Contact] = Array()
 
     public var count: Int {
         return self.contacts.count
@@ -23,12 +23,13 @@ class ContactListDataProvider: NSObject {
     public func retrieve() {
         let req = CNContactFetchRequest(keysToFetch: self.keysToFetch)
         try! CNContactStore().enumerateContacts(with: req) {
-            contact, stop in
+            contactData, stop in
+            let contact = Contact(data: contactData)
             self.contacts.append(contact)
         }
     }
 
-    public subscript(row: Int) -> CNContact {
+    public subscript(row: Int) -> Contact {
         get {
             return self.contacts[row]
         }
