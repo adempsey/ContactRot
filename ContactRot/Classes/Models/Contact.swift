@@ -8,7 +8,7 @@
 
 import Contacts
 
-class Contact: NSObject {
+class Contact: Codable {
 
     let givenName: String
     let familyName: String

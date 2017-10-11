@@ -27,6 +27,9 @@ class ContactListDataProvider: NSObject {
             let contact = Contact(data: contactData)
             self.contacts.append(contact)
         }
+
+        let man = ContactDataManager()
+        try! man?.saveNew(contacts: self.contacts)
     }
 
     public subscript(row: Int) -> Contact {

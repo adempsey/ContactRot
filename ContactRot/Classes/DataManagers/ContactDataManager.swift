@@ -34,13 +34,53 @@ class ContactDataManager {
 
         if !self.fileManager.fileExists(atPath: filePath) {
 
-            guard let jsonDict = try? JSONSerialization.data(withJSONObject: []) else {
+            guard let jsonDict = try? JSONEncoder().encode([String:String]()) else {
                 return nil
             }
 
             self.fileManager.createFile(atPath: filePath,
                                         contents: jsonDict,
                                         attributes: nil)
+        }
+    }
+
+    func saveNew(contacts: [Contact]) throws {
+
+        enum ContactsFileError: Error {
+            case ContactsFilePathUndefined
+            case ContactsFileNotFound
+        }
+
+        do {
+            guard let filePath = self.filePath else {
+                throw ContactsFileError.ContactsFilePathUndefined
+            }
+
+            guard self.fileManager.fileExists(atPath: filePath) else {
+                throw ContactsFileError.ContactsFilePathUndefined
+            }
+
+            let filePathURL = URL(fileURLWithPath: filePath)
+            let fileContents = try Data(contentsOf: filePathURL)
+
+            var savedContacts = try JSONDecoder().decode(Dictionary<String,String>.self,
+                                                          from: fileContents)
+
+            let currentKeys = Set(savedContacts.keys)
+            let newContacts = contacts.filter { !currentKeys.contains($0.contactID) }
+
+            savedContacts = newContacts.reduce(savedContacts) {
+                (dict, contact) in
+                var d = dict
+                d[contact.contactID] = String(contact.lastContactDate.timeIntervalSince1970)
+                return d
+            }
+
+            let newData = try JSONEncoder().encode(savedContacts)
+            try newData.write(to: filePathURL, options: .atomicWrite)
+
+        } catch let error {
+            throw error
         }
     }
 
