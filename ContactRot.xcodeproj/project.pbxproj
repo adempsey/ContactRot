@@ -13,20 +13,9 @@
 		8DE0DD891F86DB0D00C5E0E2 /* ContactListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE0DD881F86DB0D00C5E0E2 /* ContactListViewController.swift */; };
 		8DE0DD911F86DB0D00C5E0E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DE0DD901F86DB0D00C5E0E2 /* Assets.xcassets */; };
 		8DE0DD941F86DB0D00C5E0E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DE0DD921F86DB0D00C5E0E2 /* LaunchScreen.storyboard */; };
-		8DE0DD9F1F86DB0D00C5E0E2 /* ContactRotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE0DD9E1F86DB0D00C5E0E2 /* ContactRotTests.swift */; };
 		8DE0DDAB1F86E2B800C5E0E2 /* ContactListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE0DDAA1F86E2B800C5E0E2 /* ContactListDataProvider.swift */; };
 		F9C7E674D228A80EA8BF5503 /* Pods_ContactRot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A70E36A5C822964B04B45864 /* Pods_ContactRot.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		8DE0DD9B1F86DB0D00C5E0E2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8DE0DD7B1F86DB0D00C5E0E2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8DE0DD821F86DB0D00C5E0E2;
-			remoteInfo = ContactRot;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0B4D19040C50674C57EB6510 /* Pods-ContactRot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactRot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ContactRot/Pods-ContactRot.debug.xcconfig"; sourceTree = "<group>"; };
@@ -39,9 +28,6 @@
 		8DE0DD901F86DB0D00C5E0E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8DE0DD931F86DB0D00C5E0E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8DE0DD951F86DB0D00C5E0E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8DE0DD9A1F86DB0D00C5E0E2 /* ContactRotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactRotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8DE0DD9E1F86DB0D00C5E0E2 /* ContactRotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRotTests.swift; sourceTree = "<group>"; };
-		8DE0DDA01F86DB0D00C5E0E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DE0DDAA1F86E2B800C5E0E2 /* ContactListDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactListDataProvider.swift; sourceTree = "<group>"; };
 		A70E36A5C822964B04B45864 /* Pods_ContactRot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ContactRot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -52,13 +38,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9C7E674D228A80EA8BF5503 /* Pods_ContactRot.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8DE0DD971F86DB0D00C5E0E2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,7 +75,6 @@
 			isa = PBXGroup;
 			children = (
 				8DE0DD851F86DB0D00C5E0E2 /* ContactRot */,
-				8DE0DD9D1F86DB0D00C5E0E2 /* ContactRotTests */,
 				8DE0DD841F86DB0D00C5E0E2 /* Products */,
 				B8066D68013632087297203A /* Pods */,
 				A7DC49914E03DE76E9C8D368 /* Frameworks */,
@@ -107,7 +85,6 @@
 			isa = PBXGroup;
 			children = (
 				8DE0DD831F86DB0D00C5E0E2 /* ContactRot.app */,
-				8DE0DD9A1F86DB0D00C5E0E2 /* ContactRotTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -125,15 +102,6 @@
 				8DE0DD951F86DB0D00C5E0E2 /* Info.plist */,
 			);
 			path = ContactRot;
-			sourceTree = "<group>";
-		};
-		8DE0DD9D1F86DB0D00C5E0E2 /* ContactRotTests */ = {
-			isa = PBXGroup;
-			children = (
-				8DE0DD9E1F86DB0D00C5E0E2 /* ContactRotTests.swift */,
-				8DE0DDA01F86DB0D00C5E0E2 /* Info.plist */,
-			);
-			path = ContactRotTests;
 			sourceTree = "<group>";
 		};
 		8DE0DDA91F86E27400C5E0E2 /* Data Providers */ = {
@@ -185,24 +153,6 @@
 			productReference = 8DE0DD831F86DB0D00C5E0E2 /* ContactRot.app */;
 			productType = "com.apple.product-type.application";
 		};
-		8DE0DD991F86DB0D00C5E0E2 /* ContactRotTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8DE0DDA61F86DB0D00C5E0E2 /* Build configuration list for PBXNativeTarget "ContactRotTests" */;
-			buildPhases = (
-				8DE0DD961F86DB0D00C5E0E2 /* Sources */,
-				8DE0DD971F86DB0D00C5E0E2 /* Frameworks */,
-				8DE0DD981F86DB0D00C5E0E2 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8DE0DD9C1F86DB0D00C5E0E2 /* PBXTargetDependency */,
-			);
-			name = ContactRotTests;
-			productName = ContactRotTests;
-			productReference = 8DE0DD9A1F86DB0D00C5E0E2 /* ContactRotTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -216,11 +166,6 @@
 					8DE0DD821F86DB0D00C5E0E2 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
-					};
-					8DE0DD991F86DB0D00C5E0E2 = {
-						CreatedOnToolsVersion = 8.2.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 8DE0DD821F86DB0D00C5E0E2;
 					};
 				};
 			};
@@ -238,7 +183,6 @@
 			projectRoot = "";
 			targets = (
 				8DE0DD821F86DB0D00C5E0E2 /* ContactRot */,
-				8DE0DD991F86DB0D00C5E0E2 /* ContactRotTests */,
 			);
 		};
 /* End PBXProject section */
@@ -250,13 +194,6 @@
 			files = (
 				8DE0DD941F86DB0D00C5E0E2 /* LaunchScreen.storyboard in Resources */,
 				8DE0DD911F86DB0D00C5E0E2 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8DE0DD981F86DB0D00C5E0E2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,23 +266,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8DE0DD961F86DB0D00C5E0E2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8DE0DD9F1F86DB0D00C5E0E2 /* ContactRotTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		8DE0DD9C1F86DB0D00C5E0E2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8DE0DD821F86DB0D00C5E0E2 /* ContactRot */;
-			targetProxy = 8DE0DD9B1F86DB0D00C5E0E2 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		8DE0DD921F86DB0D00C5E0E2 /* LaunchScreen.storyboard */ = {
@@ -480,34 +401,6 @@
 			};
 			name = Release;
 		};
-		8DE0DDA71F86DB0D00C5E0E2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = ContactRotTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = dempsey.ContactRotTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ContactRot.app/ContactRot";
-			};
-			name = Debug;
-		};
-		8DE0DDA81F86DB0D00C5E0E2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = ContactRotTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = dempsey.ContactRotTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ContactRot.app/ContactRot";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -525,15 +418,6 @@
 			buildConfigurations = (
 				8DE0DDA41F86DB0D00C5E0E2 /* Debug */,
 				8DE0DDA51F86DB0D00C5E0E2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8DE0DDA61F86DB0D00C5E0E2 /* Build configuration list for PBXNativeTarget "ContactRotTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8DE0DDA71F86DB0D00C5E0E2 /* Debug */,
-				8DE0DDA81F86DB0D00C5E0E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
