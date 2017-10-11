@@ -52,21 +52,9 @@ class ContactDataManager {
     // MARK: Public Methods
 
     public func existingIDs() throws -> [String:Date] {
-
         do {
-            guard let filePath = self.filePath else {
-                throw ContactsFileError.ContactsFilePathUndefined
-            }
+            let savedContacts = try self.currentFileContents()
 
-            guard self.fileManager.fileExists(atPath: filePath) else {
-                throw ContactsFileError.ContactsFilePathUndefined
-            }
-
-            let filePathURL = URL(fileURLWithPath: filePath)
-            let fileContents = try Data(contentsOf: filePathURL)
-
-            let savedContacts = try JSONDecoder().decode(Dictionary<String,String>.self,
-                                                         from: fileContents)
             return savedContacts.mapValues() {
                 value in
                 return Date(timeIntervalSince1970: Double(value)!)
@@ -75,25 +63,11 @@ class ContactDataManager {
         } catch let error {
             throw error
         }
-
     }
 
     public func saveNew(contacts: [Contact]) throws {
-
         do {
-            guard let filePath = self.filePath else {
-                throw ContactsFileError.ContactsFilePathUndefined
-            }
-
-            guard self.fileManager.fileExists(atPath: filePath) else {
-                throw ContactsFileError.ContactsFilePathUndefined
-            }
-
-            let filePathURL = URL(fileURLWithPath: filePath)
-            let fileContents = try Data(contentsOf: filePathURL)
-
-            var savedContacts = try JSONDecoder().decode(Dictionary<String,String>.self,
-                                                          from: fileContents)
+            var savedContacts = try self.currentFileContents()
 
             let currentKeys = Set(savedContacts.keys)
             let newContacts = contacts.filter { !currentKeys.contains($0.contactID) }
@@ -105,9 +79,49 @@ class ContactDataManager {
                 return d
             }
 
-            let newData = try JSONEncoder().encode(savedContacts)
-            try newData.write(to: filePathURL, options: .atomicWrite)
+            try self.replaceFile(with: savedContacts)
 
+        } catch let error {
+            throw error
+        }
+    }
+
+    // MARK: - Helper Methods
+
+    private func currentFileContents() throws -> [String:String] {
+        do {
+            guard let filePath = self.filePath else {
+                throw ContactsFileError.ContactsFilePathUndefined
+            }
+
+            guard self.fileManager.fileExists(atPath: filePath) else {
+                throw ContactsFileError.ContactsFilePathUndefined
+            }
+
+            let filePathURL = URL(fileURLWithPath: filePath)
+            let fileContents = try Data(contentsOf: filePathURL)
+
+            return try JSONDecoder().decode(Dictionary<String,String>.self,
+                                            from: fileContents)
+        } catch let error {
+            throw error
+        }
+    }
+
+    private func replaceFile(with contents: [String:String]) throws {
+        guard let filePath = self.filePath else {
+            throw ContactsFileError.ContactsFilePathUndefined
+        }
+
+        guard self.fileManager.fileExists(atPath: filePath) else {
+            throw ContactsFileError.ContactsFilePathUndefined
+        }
+
+        let filePathURL = URL(fileURLWithPath: filePath)
+
+        do {
+            let newData = try JSONEncoder().encode(contents)
+            try newData.write(to: filePathURL, options: .atomicWrite)
         } catch let error {
             throw error
         }
