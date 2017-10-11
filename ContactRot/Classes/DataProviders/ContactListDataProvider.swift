@@ -12,9 +12,6 @@ class ContactListDataProvider: NSObject {
 
     private let dataManager: ContactDataManager? = ContactDataManager()
 
-    private let keysToFetch: [CNKeyDescriptor] = [CNContactGivenNameKey as CNKeyDescriptor,
-                                                  CNContactFamilyNameKey as CNKeyDescriptor]
-
     private var contacts: [Contact] = Array()
 
     public var count: Int {
@@ -27,7 +24,7 @@ class ContactListDataProvider: NSObject {
             return
         }
 
-        let req = CNContactFetchRequest(keysToFetch: self.keysToFetch)
+        let req = CNContactFetchRequest(keysToFetch: Contact.supportedKeys)
         try! CNContactStore().enumerateContacts(with: req) {
             contactData, stop in
             let contactID = contactData.identifier
