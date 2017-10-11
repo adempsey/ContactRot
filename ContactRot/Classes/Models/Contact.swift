@@ -15,11 +15,11 @@ class Contact: Codable {
     let contactID: String
     let lastContactDate: Date
 
-    init(data: CNContact) {
+    init(data: CNContact, contactDate: Date) {
         self.givenName = data.givenName
         self.familyName = data.familyName
         self.contactID = data.identifier
-        self.lastContactDate = Date()
+        self.lastContactDate = contactDate
     }
 
 }

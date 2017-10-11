@@ -6,10 +6,11 @@
 //  Copyright © 2017 Dempsey. All rights reserved.
 //
 
-import UIKit
 import Contacts
 
 class ContactListDataProvider: NSObject {
+
+    private let dataManager: ContactDataManager? = ContactDataManager()
 
     private let keysToFetch: [CNKeyDescriptor] = [CNContactGivenNameKey as CNKeyDescriptor,
                                                   CNContactFamilyNameKey as CNKeyDescriptor]
@@ -21,15 +22,21 @@ class ContactListDataProvider: NSObject {
     }
 
     public func retrieve() {
+
+        guard let existingContacts = try? self.dataManager?.existingIDs() else {
+            return
+        }
+
         let req = CNContactFetchRequest(keysToFetch: self.keysToFetch)
         try! CNContactStore().enumerateContacts(with: req) {
             contactData, stop in
-            let contact = Contact(data: contactData)
+            let contactID = contactData.identifier
+            let contactDate = existingContacts![contactID] ?? Date()
+            let contact = Contact(data: contactData, contactDate: contactDate)
             self.contacts.append(contact)
         }
 
-        let man = ContactDataManager()
-        try! man?.saveNew(contacts: self.contacts)
+        try! self.dataManager?.saveNew(contacts: self.contacts)
     }
 
     public subscript(row: Int) -> Contact {

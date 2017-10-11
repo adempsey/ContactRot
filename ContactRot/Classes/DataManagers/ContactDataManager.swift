@@ -10,6 +10,11 @@ import Foundation
 
 class ContactDataManager {
 
+    enum ContactsFileError: Error {
+        case ContactsFilePathUndefined
+        case ContactsFileNotFound
+    }
+
     private let fileName = "contact_list.json"
 
     private let fileManager = FileManager.default
@@ -44,12 +49,36 @@ class ContactDataManager {
         }
     }
 
-    func saveNew(contacts: [Contact]) throws {
+    // MARK: Public Methods
 
-        enum ContactsFileError: Error {
-            case ContactsFilePathUndefined
-            case ContactsFileNotFound
+    public func existingIDs() throws -> [String:Date] {
+
+        do {
+            guard let filePath = self.filePath else {
+                throw ContactsFileError.ContactsFilePathUndefined
+            }
+
+            guard self.fileManager.fileExists(atPath: filePath) else {
+                throw ContactsFileError.ContactsFilePathUndefined
+            }
+
+            let filePathURL = URL(fileURLWithPath: filePath)
+            let fileContents = try Data(contentsOf: filePathURL)
+
+            let savedContacts = try JSONDecoder().decode(Dictionary<String,String>.self,
+                                                         from: fileContents)
+            return savedContacts.mapValues() {
+                value in
+                return Date(timeIntervalSince1970: Double(value)!)
+            }
+
+        } catch let error {
+            throw error
         }
+
+    }
+
+    public func saveNew(contacts: [Contact]) throws {
 
         do {
             guard let filePath = self.filePath else {

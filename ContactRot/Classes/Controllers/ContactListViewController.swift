@@ -15,8 +15,6 @@ class ContactListViewController: UIViewController {
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(UITableViewCell.self,
-                           forCellReuseIdentifier: self.reuseIdentifier)
         tableView.dataSource = self
 
         return tableView
@@ -52,10 +50,17 @@ extension ContactListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier,
-                                                 for: indexPath)
+        let cell: UITableViewCell = {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: self.reuseIdentifier) else {
+                return UITableViewCell(style: .subtitle,
+                                       reuseIdentifier: self.reuseIdentifier)
+            }
+            return cell
+        }()
 
-        cell.textLabel?.text = self.dataProvider[indexPath.row].givenName
+        let contact = self.dataProvider[indexPath.row]
+        cell.textLabel?.text = contact.givenName
+        cell.detailTextLabel?.text = String(describing: contact.lastContactDate)
 
         return cell
     }
