@@ -60,10 +60,14 @@ extension ContactListViewController: UITableViewDataSource {
         }()
 
         let contact = self.dataProvider[indexPath.row]
+        let alpha = 1.0 - (CGFloat(abs(contact.lastContactDate.timeIntervalSinceNow)) / CGFloat(Date.DateInterval.HalfYear.rawValue))
+
         cell.textLabel?.text = String(format: "%@ %@", contact.givenName, contact.familyName)
+        cell.textLabel?.alpha = alpha
 
         let detailText = String(format: "Last contacted %@", contact.lastContactDate.relativeFormat())
         cell.detailTextLabel?.text = detailText
+        cell.detailTextLabel?.alpha = alpha
 
         return cell
     }

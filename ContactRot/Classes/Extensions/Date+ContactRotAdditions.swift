@@ -18,7 +18,7 @@ extension Date {
     }
 
     func relativeFormat() -> String {
-        let deltaInterval = self.timeIntervalSinceNow
+        let deltaInterval = abs(self.timeIntervalSinceNow)
 
         if deltaInterval < Date.DateInterval.Day.rawValue {
             return NSLocalizedString("today",
