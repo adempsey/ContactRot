@@ -10,6 +10,8 @@ import Foundation
 
 class ContactDataManager {
 
+    public static let sharedInstance: ContactDataManager = ContactDataManager()
+
     enum ContactsFileError: Error {
         case ContactsFilePathUndefined
         case ContactsFileNotFound
@@ -29,25 +31,6 @@ class ContactDataManager {
 
         return nil
     }()
-
-    // MARK: - Initialization
-
-    init?() {
-        guard let filePath = self.filePath else {
-            return nil
-        }
-
-        if !self.fileManager.fileExists(atPath: filePath) {
-
-            guard let jsonDict = try? JSONEncoder().encode([String:String]()) else {
-                return nil
-            }
-
-            self.fileManager.createFile(atPath: filePath,
-                                        contents: jsonDict,
-                                        attributes: nil)
-        }
-    }
 
     // MARK: Public Methods
 
@@ -94,8 +77,11 @@ class ContactDataManager {
                 throw ContactsFileError.ContactsFilePathUndefined
             }
 
-            guard self.fileManager.fileExists(atPath: filePath) else {
-                throw ContactsFileError.ContactsFilePathUndefined
+            if !self.fileManager.fileExists(atPath: filePath) {
+                let jsonDict = try JSONEncoder().encode([String:String]())
+                self.fileManager.createFile(atPath: filePath,
+                                            contents: jsonDict,
+                                            attributes: nil)
             }
 
             let filePathURL = URL(fileURLWithPath: filePath)
@@ -113,8 +99,15 @@ class ContactDataManager {
             throw ContactsFileError.ContactsFilePathUndefined
         }
 
-        guard self.fileManager.fileExists(atPath: filePath) else {
-            throw ContactsFileError.ContactsFilePathUndefined
+        if !self.fileManager.fileExists(atPath: filePath) {
+            do {
+                let jsonDict = try JSONEncoder().encode([String:String]())
+                self.fileManager.createFile(atPath: filePath,
+                                            contents: jsonDict,
+                                            attributes: nil)
+            } catch let error {
+                throw error
+            }
         }
 
         let filePathURL = URL(fileURLWithPath: filePath)

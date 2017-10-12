@@ -10,7 +10,7 @@ import Contacts
 
 class ContactListDataProvider: NSObject {
 
-    private let dataManager: ContactDataManager? = ContactDataManager()
+    private let dataManager: ContactDataManager = ContactDataManager.sharedInstance
 
     private var contacts: [Contact] = Array()
 
@@ -20,7 +20,7 @@ class ContactListDataProvider: NSObject {
 
     public func retrieve() {
 
-        guard let existingContacts = try? self.dataManager?.existingIDs() else {
+        guard let existingContacts = try? self.dataManager.existingIDs() else {
             return
         }
 
@@ -28,7 +28,7 @@ class ContactListDataProvider: NSObject {
         try! CNContactStore().enumerateContacts(with: req) {
             contactData, stop in
             let contactID = contactData.identifier
-            let contactDate = existingContacts![contactID] ?? Date()
+            let contactDate = existingContacts[contactID] ?? Date()
             let contact = Contact(data: contactData, contactDate: contactDate)
             self.contacts.append(contact)
         }
@@ -38,7 +38,7 @@ class ContactListDataProvider: NSObject {
             return contactA.givenName.lowercased() < contactB.givenName.lowercased()
         }
 
-        try! self.dataManager?.saveNew(contacts: self.contacts)
+        try! self.dataManager.saveNew(contacts: self.contacts)
     }
 
     public subscript(row: Int) -> Contact {
