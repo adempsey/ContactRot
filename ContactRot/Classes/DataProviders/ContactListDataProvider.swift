@@ -33,6 +33,11 @@ class ContactListDataProvider: NSObject {
             self.contacts.append(contact)
         }
 
+        self.contacts = try! self.contacts.sorted {
+            (contactA, contactB) throws -> Bool in
+            return contactA.givenName.lowercased() < contactB.givenName.lowercased()
+        }
+
         try! self.dataManager?.saveNew(contacts: self.contacts)
     }
 
