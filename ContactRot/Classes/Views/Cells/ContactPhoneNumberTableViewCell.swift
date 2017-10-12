@@ -11,6 +11,7 @@ import SnapKit
 
 protocol ContactPhoneNumberTableViewCellDelegate: NSObjectProtocol {
     func contactPhoneNumberCellDidSelectCallButton(_ cell: ContactPhoneNumberTableViewCell)
+    func contactPhoneNumberCellDidSelectMessageButton(_ cell: ContactPhoneNumberTableViewCell)
 }
 
 class ContactPhoneNumberTableViewCell: UITableViewCell {
@@ -44,6 +45,9 @@ class ContactPhoneNumberTableViewCell: UITableViewCell {
     private lazy var messageButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .blue
+        button.addTarget(self,
+                         action: #selector(didSelectMessageButton(_:)),
+                         for: .touchUpInside)
 
         return button
     }()
@@ -75,6 +79,10 @@ class ContactPhoneNumberTableViewCell: UITableViewCell {
 
     @objc private func didSelectCallButton(_ sender: Any) {
         self.delegate?.contactPhoneNumberCellDidSelectCallButton(self)
+    }
+
+    @objc private func didSelectMessageButton(_ sender: Any) {
+        self.delegate?.contactPhoneNumberCellDidSelectMessageButton(self)
     }
 
 }

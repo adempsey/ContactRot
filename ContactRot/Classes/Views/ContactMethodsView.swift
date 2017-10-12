@@ -141,4 +141,8 @@ extension ContactMethodsView: ContactPhoneNumberTableViewCellDelegate {
         print("call ".appending(cell.textLabel!.text!))
     }
 
+    func contactPhoneNumberCellDidSelectMessageButton(_ cell: ContactPhoneNumberTableViewCell) {
+        print("message ".appending(cell.textLabel!.text!))
+    }
+
 }
