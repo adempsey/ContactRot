@@ -33,12 +33,16 @@ class ContactListDataProvider: NSObject {
             self.contacts.append(contact)
         }
 
+        try! self.dataManager.saveNew(contacts: self.contacts)
+
+        self.contacts = self.contacts.filter {
+            $0.lastContactDate.timeIntervalSinceNow < Date.DateInterval.HalfYear.rawValue
+        }
+
         self.contacts = try! self.contacts.sorted {
             (contactA, contactB) throws -> Bool in
             return contactA.givenName.lowercased() < contactB.givenName.lowercased()
         }
-
-        try! self.dataManager.saveNew(contacts: self.contacts)
     }
 
     public subscript(row: Int) -> Contact {

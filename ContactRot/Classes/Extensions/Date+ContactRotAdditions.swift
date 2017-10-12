@@ -10,28 +10,35 @@ import Foundation
 
 extension Date {
 
+    enum DateInterval: TimeInterval {
+        case Day = 86400
+        case Week = 604800
+        case Month = 2678400
+        case HalfYear = 16070400
+    }
+
     func relativeFormat() -> String {
         let deltaInterval = self.timeIntervalSinceNow
 
-        if deltaInterval < 86400 {
+        if deltaInterval < Date.DateInterval.Day.rawValue {
             return NSLocalizedString("today",
                                      comment: """
                                                  Indicates that the time that someone was last
                                                  contacted was within the past 24 hours
                                               """)
-        } else if deltaInterval < 604800 {
+        } else if deltaInterval < Date.DateInterval.Week.rawValue {
             return NSLocalizedString("within the past week",
                                      comment: """
                                                  Indicates that the time that someone was last
                                                  contacted was within the past week
                                               """)
-        } else if deltaInterval < 2678400 {
+        } else if deltaInterval < Date.DateInterval.Month.rawValue {
             return NSLocalizedString("within the past month",
                                      comment: """
                                                  Indicates that the time that someone was last
                                                  contacted was within the past month
                                               """)
-        } else if deltaInterval < 16070400 {
+        } else if deltaInterval < Date.DateInterval.HalfYear.rawValue {
             return NSLocalizedString("within the past 6 months",
                                      comment: """
                                                  Indicates that the time that someone was last
