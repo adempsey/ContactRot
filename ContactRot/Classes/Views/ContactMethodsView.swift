@@ -94,6 +94,7 @@ extension ContactMethodsView: UITableViewDataSource {
             }
         }()
 
+        cell.delegate = self
         cell.textLabel?.text = title
 
         return cell
@@ -130,6 +131,14 @@ extension ContactMethodsView: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44.0
+    }
+
+}
+
+extension ContactMethodsView: ContactPhoneNumberTableViewCellDelegate {
+
+    func contactPhoneNumberCellDidSelectCallButton(_ cell: ContactPhoneNumberTableViewCell) {
+        print("call ".appending(cell.textLabel!.text!))
     }
 
 }

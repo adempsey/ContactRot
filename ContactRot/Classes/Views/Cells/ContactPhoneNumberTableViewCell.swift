@@ -9,7 +9,15 @@
 import UIKit
 import SnapKit
 
+protocol ContactPhoneNumberTableViewCellDelegate: NSObjectProtocol {
+    func contactPhoneNumberCellDidSelectCallButton(_ cell: ContactPhoneNumberTableViewCell)
+}
+
 class ContactPhoneNumberTableViewCell: UITableViewCell {
+
+    // MARK: - Public Properties
+
+    public weak var delegate: ContactPhoneNumberTableViewCellDelegate?
 
     // MARK: - Private Properties
 
@@ -26,6 +34,9 @@ class ContactPhoneNumberTableViewCell: UITableViewCell {
     private lazy var phoneButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .red
+        button.addTarget(self,
+                         action: #selector(didSelectCallButton(_:)),
+                         for: .touchUpInside)
 
         return button
     }()
@@ -58,6 +69,12 @@ class ContactPhoneNumberTableViewCell: UITableViewCell {
             (make) in
             make.top.right.bottom.equalTo(self.contentView)
         }
+    }
+
+    // MARK: - Actions
+
+    @objc private func didSelectCallButton(_ sender: Any) {
+        self.delegate?.contactPhoneNumberCellDidSelectCallButton(self)
     }
 
 }
