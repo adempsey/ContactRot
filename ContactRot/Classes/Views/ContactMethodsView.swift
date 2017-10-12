@@ -9,7 +9,13 @@
 import UIKit
 import SnapKit
 
+protocol ContactMethodsViewDelegate: NSObjectProtocol {
+    func didSelectEmailAddress(_ methodsView: ContactMethodsView, address: String)
+}
+
 class ContactMethodsView: UIView {
+
+    public weak var delegate: ContactMethodsViewDelegate?
 
     fileprivate enum TableViewSections: Int {
         case Phone
@@ -110,6 +116,16 @@ extension ContactMethodsView: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+
+        switch indexPath.section {
+        case TableViewSections.Phone.rawValue:
+            break
+        case TableViewSections.Email.rawValue:
+            self.delegate?.didSelectEmailAddress(self, address: self.contact!.emailAddresses[indexPath.row])
+            break
+        default:
+            break
+        }
     }
 
 }

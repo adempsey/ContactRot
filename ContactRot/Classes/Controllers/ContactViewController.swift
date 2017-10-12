@@ -52,10 +52,10 @@ class ContactViewController: UIViewController {
         return stackView
     }()
 
-    private lazy var contactMethodsView: ContactMethodsView = {
-        let view = ContactMethodsView(contact: contact!)
+    private lazy var contactMethodsViewController: ContactMethodsViewController = {
+        let viewController = ContactMethodsViewController(contact: contact!)
 
-        return view
+        return viewController
     }()
 
     // MARK: - Initialization
@@ -78,7 +78,9 @@ class ContactViewController: UIViewController {
         self.view.backgroundColor = .white
 
         self.view.addSubview(self.contactInfoView)
-        self.view.addSubview(self.contactMethodsView)
+
+        self.addChildViewController(self.contactMethodsViewController)
+        self.view.addSubview(self.contactMethodsViewController.view)
 
         self.createContraints()
     }
@@ -98,7 +100,7 @@ class ContactViewController: UIViewController {
             make.edges.equalTo(self.contactInfoView)
         }
 
-        self.contactMethodsView.snp.makeConstraints {
+        self.contactMethodsViewController.view.snp.makeConstraints {
             (make) in
             make.top.equalTo(self.contactInfoView.snp.bottom)
             make.left.right.bottom.equalTo(self.view)
