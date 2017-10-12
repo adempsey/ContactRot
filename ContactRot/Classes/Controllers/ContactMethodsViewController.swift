@@ -62,7 +62,16 @@ extension ContactMethodsViewController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController,
                                didFinishWith result: MFMailComposeResult,
                                error: Error?) {
-        controller.dismiss(animated: true)
+
+        defer {
+            controller.dismiss(animated: true)
+        }
+
+        if error == nil, result == .sent, let contact = self.contact {
+            guard (try? ContactDataManager.sharedInstance.updateContactDate(for: [contact])) != nil else {
+                return
+            }
+        }
     }
 
 }

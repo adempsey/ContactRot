@@ -69,22 +69,26 @@ class ContactDataManager {
         }
     }
 
+    public func updateContactDate(for contacts: [Contact]) throws {
+        do {
+            var savedContacts = try self.currentFileContents()
+
+            for contact: Contact in contacts {
+                savedContacts[contact.contactID] = String(Date().timeIntervalSince1970)
+            }
+
+            try self.replaceFile(with: savedContacts)
+
+        } catch let error {
+            throw error
+        }
+    }
+
     // MARK: - Helper Methods
 
     private func currentFileContents() throws -> [String:String] {
         do {
-            guard let filePath = self.filePath else {
-                throw ContactsFileError.ContactsFilePathUndefined
-            }
-
-            if !self.fileManager.fileExists(atPath: filePath) {
-                let jsonDict = try JSONEncoder().encode([String:String]())
-                self.fileManager.createFile(atPath: filePath,
-                                            contents: jsonDict,
-                                            attributes: nil)
-            }
-
-            let filePathURL = URL(fileURLWithPath: filePath)
+            let filePathURL = try self.currentFilePath()
             let fileContents = try Data(contentsOf: filePathURL)
 
             return try JSONDecoder().decode(Dictionary<String,String>.self,
@@ -95,6 +99,18 @@ class ContactDataManager {
     }
 
     private func replaceFile(with contents: [String:String]) throws {
+
+        do {
+            let filePathURL = try self.currentFilePath()
+            let newData = try JSONEncoder().encode(contents)
+            try newData.write(to: filePathURL, options: .atomicWrite)
+
+        } catch let error {
+            throw error
+        }
+    }
+
+    private func currentFilePath() throws -> URL {
         guard let filePath = self.filePath else {
             throw ContactsFileError.ContactsFilePathUndefined
         }
@@ -110,14 +126,7 @@ class ContactDataManager {
             }
         }
 
-        let filePathURL = URL(fileURLWithPath: filePath)
-
-        do {
-            let newData = try JSONEncoder().encode(contents)
-            try newData.write(to: filePathURL, options: .atomicWrite)
-        } catch let error {
-            throw error
-        }
+        return URL(fileURLWithPath: filePath)
     }
 
 }
