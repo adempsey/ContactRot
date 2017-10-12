@@ -60,7 +60,7 @@ extension ContactListViewController: UITableViewDataSource {
         }()
 
         let contact = self.dataProvider[indexPath.row]
-        cell.textLabel?.text = contact.givenName
+        cell.textLabel?.text = String(format: "%@ %@", contact.givenName, contact.familyName)
 
         let detailText = String(format: "Last contacted %@", contact.lastContactDate.relativeFormat())
         cell.detailTextLabel?.text = detailText
