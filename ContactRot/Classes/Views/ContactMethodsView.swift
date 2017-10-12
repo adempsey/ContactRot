@@ -75,12 +75,12 @@ extension ContactMethodsView: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = {
+        let cell: ContactPhoneNumberTableViewCell = {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: self.reuseIdentifier) else {
-                return UITableViewCell(style: .default, reuseIdentifier: self.reuseIdentifier)
+                return ContactPhoneNumberTableViewCell(style: .default, reuseIdentifier: self.reuseIdentifier)
             }
 
-            return cell
+            return cell as! ContactPhoneNumberTableViewCell
         }()
 
         let title: String = {
@@ -126,6 +126,10 @@ extension ContactMethodsView: UITableViewDelegate {
         default:
             break
         }
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44.0
     }
 
 }
