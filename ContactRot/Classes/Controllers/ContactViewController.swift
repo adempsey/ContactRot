@@ -23,6 +23,17 @@ class ContactViewController: UIViewController {
         return label
     }()
 
+    private lazy var contactDateLabel: UILabel = {
+        let label = UILabel()
+        if let contact = self.contact {
+            let text = String(format: "Last contacted %@", contact.lastContactDate.relativeFormat())
+            label.text = text
+        }
+        label.textAlignment = .center
+
+        return label
+    }()
+
     private lazy var contactInfoView: UIView = {
         let view = UIView()
         view.backgroundColor = .gray
@@ -36,6 +47,7 @@ class ContactViewController: UIViewController {
         stackView.axis = .vertical
         stackView.backgroundColor = .black
         stackView.addArrangedSubview(self.nameLabel)
+        stackView.addArrangedSubview(self.contactDateLabel)
 
         return stackView
     }()
