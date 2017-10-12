@@ -47,6 +47,15 @@ class ContactMethodsViewController: UIViewController {
         }
     }
 
+    private func composeMessage(to number: String) {
+        if MFMessageComposeViewController.canSendText() {
+            let composerController = MFMessageComposeViewController()
+            composerController.messageComposeDelegate = self
+            composerController.recipients = [number]
+            self.present(composerController, animated: true)
+        }
+    }
+
 }
 
 extension ContactMethodsViewController: ContactMethodsViewDelegate {
@@ -62,7 +71,7 @@ extension ContactMethodsViewController: ContactMethodsViewDelegate {
     }
 
     func didSelectMessageButton(_ methodsView: ContactMethodsView, number: String) {
-        //
+        self.composeMessage(to: number)
     }
 
 }
@@ -78,6 +87,23 @@ extension ContactMethodsViewController: MFMailComposeViewControllerDelegate {
         }
 
         if error == nil, result == .sent, let contact = self.contact {
+            guard (try? ContactDataManager.sharedInstance.updateContactDate(for: [contact])) != nil else {
+                return
+            }
+        }
+    }
+
+}
+
+extension ContactMethodsViewController: MFMessageComposeViewControllerDelegate {
+
+    func messageComposeViewController(_ controller: MFMessageComposeViewController,
+                                      didFinishWith result: MessageComposeResult) {
+        defer {
+            controller.dismiss(animated: true)
+        }
+
+        if result == .sent, let contact = self.contact {
             guard (try? ContactDataManager.sharedInstance.updateContactDate(for: [contact])) != nil else {
                 return
             }

@@ -147,7 +147,10 @@ extension ContactMethodsView: ContactPhoneNumberTableViewCellDelegate {
     }
 
     func contactPhoneNumberCellDidSelectMessageButton(_ cell: ContactPhoneNumberTableViewCell) {
-        print("message ".appending(cell.textLabel!.text!))
+        let number = cell.textLabel!.text!.filter {
+            "0123456789".characters.contains($0)
+        }
+        self.delegate?.didSelectMessageButton(self, number: number)
     }
 
 }
