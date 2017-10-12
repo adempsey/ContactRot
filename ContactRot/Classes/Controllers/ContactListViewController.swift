@@ -16,6 +16,7 @@ class ContactListViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
+        tableView.delegate = self
 
         return tableView
     }()
@@ -64,5 +65,17 @@ extension ContactListViewController: UITableViewDataSource {
 
         return cell
     }
-    
+
+}
+
+extension ContactListViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let contact = self.dataProvider[indexPath.row]
+        let viewController = ContactViewController(contact: contact)
+        self.navigationController?.pushViewController(viewController,
+                                                      animated: true)
+    }
+
 }
