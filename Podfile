@@ -4,4 +4,6 @@ use_frameworks!
 
 target 'ContactRot' do
     pod 'SnapKit', '4.0.0'
+    pod 'Fabric', '1.7.0'
+    pod 'Crashlytics', '3.9.0'
 end

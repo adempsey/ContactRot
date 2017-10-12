@@ -170,6 +170,7 @@
 				8DE0DD811F86DB0D00C5E0E2 /* Resources */,
 				455DD45EF689213553485CF9 /* [CP] Embed Pods Frameworks */,
 				779B127EB629E3D70A0ED9B8 /* [CP] Copy Pods Resources */,
+				8DB23BD91F8F0A930034B1C4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -259,6 +260,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ContactRot/Pods-ContactRot-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		8DB23BD91F8F0A930034B1C4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" d30c22026c802c81271986fec1942bda82623f85 9f467a0932e39ec6389aab1ea38905a439a05932fbeb266286f61bb84a139596";
 		};
 		F713486BB72DEC6A7CB96E8C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
