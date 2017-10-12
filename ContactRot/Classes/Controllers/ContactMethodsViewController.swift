@@ -55,6 +55,16 @@ extension ContactMethodsViewController: ContactMethodsViewDelegate {
         self.composeEmail(to: address)
     }
 
+    func didSelectCallButton(_ methodsView: ContactMethodsView, number: String) {
+        if let url = URL(string: "telprompt://".appending(number)) {
+            UIApplication.shared.open(url)
+        }
+    }
+
+    func didSelectMessageButton(_ methodsView: ContactMethodsView, number: String) {
+        //
+    }
+
 }
 
 extension ContactMethodsViewController: MFMailComposeViewControllerDelegate {

@@ -11,6 +11,8 @@ import SnapKit
 
 protocol ContactMethodsViewDelegate: NSObjectProtocol {
     func didSelectEmailAddress(_ methodsView: ContactMethodsView, address: String)
+    func didSelectCallButton(_ methodsView: ContactMethodsView, number: String)
+    func didSelectMessageButton(_ methodsView: ContactMethodsView, number: String)
 }
 
 class ContactMethodsView: UIView {
@@ -138,7 +140,10 @@ extension ContactMethodsView: UITableViewDelegate {
 extension ContactMethodsView: ContactPhoneNumberTableViewCellDelegate {
 
     func contactPhoneNumberCellDidSelectCallButton(_ cell: ContactPhoneNumberTableViewCell) {
-        print("call ".appending(cell.textLabel!.text!))
+        let number = cell.textLabel!.text!.filter {
+            "0123456789".characters.contains($0)
+        }
+        self.delegate?.didSelectCallButton(self, number: number)
     }
 
     func contactPhoneNumberCellDidSelectMessageButton(_ cell: ContactPhoneNumberTableViewCell) {
