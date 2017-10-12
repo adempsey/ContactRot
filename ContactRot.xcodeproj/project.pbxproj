@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8D1821E11F8EEE0F00DA9522 /* Date+ContactRotAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1821E01F8EEE0F00DA9522 /* Date+ContactRotAdditions.swift */; };
+		8D1821E41F8EFB8800DA9522 /* ContactMethodsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1821E31F8EFB8800DA9522 /* ContactMethodsView.swift */; };
 		8D606ACF1F8DBE4E00BB169A /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D606ACE1F8DBE4E00BB169A /* ContactViewController.swift */; };
 		8D91AD7D1F8C4B0200645D0F /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D91AD7C1F8C4B0200645D0F /* Contact.swift */; };
 		8D91AD801F8C4F9000645D0F /* ContactDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D91AD7F1F8C4F9000645D0F /* ContactDataManager.swift */; };
@@ -23,6 +24,7 @@
 		0B4D19040C50674C57EB6510 /* Pods-ContactRot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactRot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ContactRot/Pods-ContactRot.debug.xcconfig"; sourceTree = "<group>"; };
 		3AC6EB0362F55524C8A0DDCF /* Pods-ContactRot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactRot.release.xcconfig"; path = "Pods/Target Support Files/Pods-ContactRot/Pods-ContactRot.release.xcconfig"; sourceTree = "<group>"; };
 		8D1821E01F8EEE0F00DA9522 /* Date+ContactRotAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ContactRotAdditions.swift"; sourceTree = "<group>"; };
+		8D1821E31F8EFB8800DA9522 /* ContactMethodsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactMethodsView.swift; sourceTree = "<group>"; };
 		8D606ACE1F8DBE4E00BB169A /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		8D91AD7C1F8C4B0200645D0F /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		8D91AD7F1F8C4F9000645D0F /* ContactDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactDataManager.swift; sourceTree = "<group>"; };
@@ -55,6 +57,15 @@
 			);
 			name = Extensions;
 			path = Classes/Extensions;
+			sourceTree = "<group>";
+		};
+		8D1821E21F8EFB3300DA9522 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8D1821E31F8EFB8800DA9522 /* ContactMethodsView.swift */,
+			);
+			name = Views;
+			path = Classes/Views;
 			sourceTree = "<group>";
 		};
 		8D91AD751F881B2800645D0F /* Controllers */ = {
@@ -111,6 +122,7 @@
 				8DE0DDA91F86E27400C5E0E2 /* Data Providers */,
 				8D1821DF1F8EEDBE00DA9522 /* Extensions */,
 				8D91AD7B1F8C4AE100645D0F /* Models */,
+				8D1821E21F8EFB3300DA9522 /* Views */,
 				8DE0DD861F86DB0D00C5E0E2 /* AppDelegate.swift */,
 				8DE0DD901F86DB0D00C5E0E2 /* Assets.xcassets */,
 				8DE0DD921F86DB0D00C5E0E2 /* LaunchScreen.storyboard */,
@@ -279,6 +291,7 @@
 				8D1821E11F8EEE0F00DA9522 /* Date+ContactRotAdditions.swift in Sources */,
 				8D91AD7D1F8C4B0200645D0F /* Contact.swift in Sources */,
 				8DE0DD871F86DB0D00C5E0E2 /* AppDelegate.swift in Sources */,
+				8D1821E41F8EFB8800DA9522 /* ContactMethodsView.swift in Sources */,
 				8D606ACF1F8DBE4E00BB169A /* ContactViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
