@@ -22,19 +22,21 @@ class ContactPhoneNumberTableViewCell: UITableViewCell {
 
     // MARK: - Private Properties
 
-    private lazy var contactButtonStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-
-        stackView.addArrangedSubview(self.phoneButton)
-        stackView.addArrangedSubview(self.messageButton)
-
-        return stackView
-    }()
+//    private lazy var contactButtonStackView: UIStackView = {
+//        let stackView = UIStackView()
+//        stackView.axis = .horizontal
+//        stackView.distribution = .equalSpacing
+//        stackView.spacing = 20
+//
+//        stackView.addArrangedSubview(self.phoneButton)
+//        stackView.addArrangedSubview(self.messageButton)
+//
+//        return stackView
+//    }()
 
     private lazy var phoneButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .red
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
+        button.setBackgroundImage(UIImage(named: "icon-phone"), for: .normal)
         button.addTarget(self,
                          action: #selector(didSelectCallButton(_:)),
                          for: .touchUpInside)
@@ -57,7 +59,8 @@ class ContactPhoneNumberTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        self.contentView.addSubview(self.contactButtonStackView)
+        self.contentView.addSubview(self.phoneButton)
+        self.contentView.addSubview(self.messageButton)
 
         self.createConstraints()
     }
@@ -69,9 +72,19 @@ class ContactPhoneNumberTableViewCell: UITableViewCell {
     // MARK: - Layout
 
     private func createConstraints() {
-        self.contactButtonStackView.snp.makeConstraints {
+
+        self.messageButton.snp.makeConstraints {
             (make) in
-            make.top.right.bottom.equalTo(self.contentView)
+            make.width.height.equalTo(36)
+            make.centerY.equalTo(self)
+            make.right.equalTo(self).offset(-self.separatorInset.left)
+        }
+
+        self.phoneButton.snp.makeConstraints {
+            (make) in
+            make.width.height.equalTo(36)
+            make.centerY.equalTo(self)
+            make.right.equalTo(self.messageButton.snp.left).offset(-20)
         }
     }
 

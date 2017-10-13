@@ -57,6 +57,7 @@ class ContactViewController: UIViewController {
                 if let imageData = self.contact?.thumbnailData {
                     imageView.image = UIImage(data: imageData)
                 }
+
                 imageView.clipsToBounds = true
                 imageView.autoresizesSubviews = true
 
