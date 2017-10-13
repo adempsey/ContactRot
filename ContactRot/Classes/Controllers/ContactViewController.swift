@@ -135,6 +135,8 @@ class ContactViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.backgroundColor = .white
+
         self.view.addSubview(self.scrollView)
         self.scrollView.addSubview(self.containerView)
 
