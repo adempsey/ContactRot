@@ -26,6 +26,9 @@ class ContactListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.title = "ContactRot"
+
         self.view.addSubview(self.tableView)
         self.createConstraints()
 
