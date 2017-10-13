@@ -114,10 +114,22 @@ extension ContactListViewController: UITableViewDelegate {
             return nil
         }
 
-        let label = UILabel()
+        let offset = self.tableView.separatorInset.left
+
+        let view = UIView(frame: CGRect(x: 0,
+                                        y: 0,
+                                        width: self.view.frame.size.width,
+                                        height: 24))
+
+        let label = UILabel(frame: CGRect(x: offset,
+                                          y: 0,
+                                          width: self.view.frame.size.width - offset,
+                                          height: 24))
         label.text = String(UnicodeScalar(UInt8(section + 65)))
         label.font = UIFont.boldSystemFont(ofSize: 14)
 
-        return label
+        view.addSubview(label)
+
+        return view
     }
 }
