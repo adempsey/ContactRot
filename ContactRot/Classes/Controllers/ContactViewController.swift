@@ -49,23 +49,30 @@ class ContactViewController: UIViewController {
 
     private lazy var contactThumbnailView: UIView = {
 
-        if let thumbnailData = self.contact?.thumbnailData {
-            let imageView = UIImageView()
-            if let imageData = self.contact?.thumbnailData {
-                imageView.image = UIImage(data: imageData)
+        let view: UIView = {
+            if let thumbnailData = self.contact?.thumbnailData {
+                let imageView = UIImageView()
+                if let imageData = self.contact?.thumbnailData {
+                    imageView.image = UIImage(data: imageData)
+                }
+                imageView.clipsToBounds = true
+                imageView.autoresizesSubviews = true
+
+                return imageView
+
+            } else {
+                let view = UIView()
+                view.backgroundColor = .green
+                view.addSubview(self.miniNameLabel)
+
+                return view
             }
-            imageView.clipsToBounds = true
-            imageView.autoresizesSubviews = true
+        }()
 
-            return imageView
+        view.layer.cornerRadius = 40
+        view.layer.masksToBounds = true
 
-        } else {
-            let view = UIView()
-            view.backgroundColor = .green
-            view.addSubview(self.miniNameLabel)
-
-            return view
-        }
+        return view
     }()
 
     private lazy var contactInfoView: UIView = {
