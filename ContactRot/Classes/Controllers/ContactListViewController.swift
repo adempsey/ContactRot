@@ -19,7 +19,8 @@ class ContactListViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.sectionHeaderHeight = 0
+        tableView.sectionFooterHeight = 0
 
         return tableView
     }()
