@@ -12,7 +12,7 @@ class ContactListDataProvider: NSObject {
 
     private let dataManager: ContactDataManager = ContactDataManager.sharedInstance
 
-    private var contacts: [Contact] = Array()
+    private var contacts: [String: [Contact]] = Dictionary()
 
     public var count: Int {
         return self.contacts.count
@@ -24,30 +24,49 @@ class ContactListDataProvider: NSObject {
             return
         }
 
+        var contacts: [Contact] = Array()
+
         let req = CNContactFetchRequest(keysToFetch: Contact.supportedKeys)
         try! CNContactStore().enumerateContacts(with: req) {
             contactData, stop in
             let contactID = contactData.identifier
             let contactDate = existingContacts[contactID] ?? Date()
             let contact = Contact(data: contactData, contactDate: contactDate)
-            self.contacts.append(contact)
+            contacts.append(contact)
         }
 
-        try! self.dataManager.saveNew(contacts: self.contacts)
+        try! self.dataManager.saveNew(contacts: contacts)
 
-        self.contacts = self.contacts.filter {
+        contacts = contacts.filter {
             $0.lastContactDate.timeIntervalSinceNow < Date.DateInterval.HalfYear.rawValue
         }
 
-        self.contacts = try! self.contacts.sorted {
-            (contactA, contactB) throws -> Bool in
-            return contactA.givenName.lowercased() < contactB.givenName.lowercased()
+        self.contacts = contacts.reduce([String: [Contact]]()) {
+            (accum, contact) in
+            var dict = accum
+            let key = String(describing: contact.givenName.first!).lowercased()
+
+            if dict[key] == nil {
+                dict[key] = [contact]
+            } else {
+                dict[key]!.append(contact)
+            }
+
+            return dict
         }
     }
 
-    public subscript(row: Int) -> Contact {
+    public subscript(section: Int) -> [Contact]? {
         get {
-            return self.contacts[row]
+            let key = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"][section]
+            return self.contacts[key]
+        }
+    }
+
+    public subscript(section: Int, row: Int) -> Contact? {
+        get {
+            let key = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"][section]
+            return self.contacts[key]?[row]
         }
     }
 

@@ -14,9 +14,10 @@ class ContactListViewController: UIViewController {
     fileprivate let reuseIdentifier = "contact_list_cell"
 
     private lazy var tableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
 
         return tableView
     }()
@@ -43,11 +44,11 @@ class ContactListViewController: UIViewController {
 extension ContactListViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 26
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.dataProvider.count
+        return self.dataProvider[section]?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -59,7 +60,11 @@ extension ContactListViewController: UITableViewDataSource {
             return cell
         }()
 
-        let contact = self.dataProvider[indexPath.row]
+        guard let contactList = self.dataProvider[indexPath.section] else {
+            return cell
+        }
+
+        let contact = contactList[indexPath.row]
         let alpha = 1.0 - (CGFloat(abs(contact.lastContactDate.timeIntervalSinceNow)) / CGFloat(Date.DateInterval.HalfYear.rawValue))
 
         cell.textLabel?.text = String(format: "%@ %@", contact.givenName, contact.familyName)
@@ -78,10 +83,38 @@ extension ContactListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let contact = self.dataProvider[indexPath.row]
+
+        guard let contactList = self.dataProvider[indexPath.section] else {
+            return
+        }
+
+        let contact = contactList[indexPath.row]
         let viewController = ContactViewController(contact: contact)
         self.navigationController?.pushViewController(viewController,
                                                       animated: true)
     }
 
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return self.dataProvider[section] != nil ? 24 : 0
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if self.dataProvider[section] == nil {
+            return nil
+        }
+
+        let label = UILabel()
+        label.text = String(UnicodeScalar(UInt8(section + 65)))
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+
+        return label
+    }
 }
