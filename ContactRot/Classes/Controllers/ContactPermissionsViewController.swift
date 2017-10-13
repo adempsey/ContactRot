@@ -22,11 +22,17 @@ class ContactPermissionsViewController: UIViewController {
 
     // MARK: - Private Properties
 
-    private let settingsManager = SettingsDataManager()
-
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "ContactRot is a live address book that only retains contacts if they stay relevant to your life"
+
+        if CNContactStore.authorizationStatus(for: CNEntityType.contacts) == .notDetermined {
+            label.text = "ContactRot is a live address book that only retains contacts if they stay relevant to your life"
+
+        } else if CNContactStore.authorizationStatus(for: CNEntityType.contacts) == .restricted ||
+            CNContactStore.authorizationStatus(for: CNEntityType.contacts) == .denied{
+            label.text = "ContactRot requires access to your contacts to run"
+        }
+
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 24)
         label.numberOfLines = 0
@@ -36,7 +42,13 @@ class ContactPermissionsViewController: UIViewController {
 
     private lazy var detailLabel: UILabel = {
         let label = UILabel()
-        label.text = "To begin, please grant access to your contacts. ContactRot will never alter or remove contacts from your main address book."
+
+        if CNContactStore.authorizationStatus(for: CNEntityType.contacts) == .notDetermined {
+            label.text = "To begin, please grant access to your contacts. ContactRot will never alter or remove contacts from your main address book."
+        } else {
+            label.text = "You can do this from your device's settings"
+        }
+
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 18)
         label.numberOfLines = 0
@@ -101,7 +113,14 @@ class ContactPermissionsViewController: UIViewController {
     // MARK: - Actions
 
     @objc private func didTapGrantAccessButton(_ sender: Any) {
-        self.requestContactsAccess()
+
+        if CNContactStore.authorizationStatus(for: CNEntityType.contacts) == .notDetermined {
+            self.requestContactsAccess()
+
+        } else if CNContactStore.authorizationStatus(for: CNEntityType.contacts) == .restricted ||
+            CNContactStore.authorizationStatus(for: CNEntityType.contacts) == .denied{
+            self.redirectToDeviceSettings()
+        }
     }
 
     // MARK: - Internal Methods
@@ -109,10 +128,13 @@ class ContactPermissionsViewController: UIViewController {
     private func requestContactsAccess() {
         CNContactStore().requestAccess(for: CNEntityType.contacts) {
             (granted, error) in
-            self.settingsManager.hasRequestedContactsPermission = true
-            self.settingsManager.hasAuthorizedContactsAccess = granted
-
             self.delegate?.permissionsViewControllerDidUpdatePermissions(self)
+        }
+    }
+
+    private func redirectToDeviceSettings() {
+        if let url = URL(string: UIApplicationOpenSettingsURLString) {
+            UIApplication.shared.open(url)
         }
     }
 

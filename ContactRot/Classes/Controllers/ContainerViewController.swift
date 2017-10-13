@@ -7,34 +7,45 @@
 //
 
 import UIKit
+import Contacts
 
 class ContainerViewController: UIViewController {
 
     // MARK: - Private Properties
 
-    private let settingsManager = SettingsDataManager()
-
-    private lazy var authorizationViewController: ContactPermissionsViewController = {
+    private var authorizationViewController: ContactPermissionsViewController {
         let viewController = ContactPermissionsViewController()
         viewController.delegate = self
 
         return viewController
-    }()
+    }
 
-    private lazy var contactsListNavigationController: UINavigationController = {
+    private var contactsListNavigationController: UINavigationController {
         let viewController = ContactListViewController()
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.navigationBar.tintColor = UIColor(white: 0.3, alpha: 1.0)
 
         return navigationController
-    }()
+    }
 
     private var currentViewController: UIViewController?
+
+    // MARK: - Initialization
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     // MARK: - View Controller Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didReceiveApplicationWillEnterForegroundNotification(_:)),
+                                               name: .UIApplicationWillEnterForeground,
+                                               object: nil)
+
         self.reloadChildView()
     }
 
@@ -49,6 +60,12 @@ class ContainerViewController: UIViewController {
 
     }
 
+    // MARK: - Notification Handlers
+
+    @objc private func didReceiveApplicationWillEnterForegroundNotification(_ notification: Notification) {
+        self.reloadChildView()
+    }
+
     // MARK: - Internal Methods
 
     private func reloadChildView() {
@@ -61,14 +78,12 @@ class ContainerViewController: UIViewController {
         }
 
         self.currentViewController = {
-            if self.settingsManager.hasRequestedContactsPermission == false {
-                return self.authorizationViewController
-
-            } else if self.settingsManager.hasAuthorizedContactsAccess {
+            if CNContactStore.authorizationStatus(for: CNEntityType.contacts) == .authorized {
                 return self.contactsListNavigationController
-            }
 
-            return nil
+            } else {
+                return self.authorizationViewController
+            }
         }()
 
         if let currentViewController = self.currentViewController {
