@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import Contacts
 import SnapKit
 
 class ContactPermissionsViewController: UIViewController {
 
     // MARK: - Private Properties
+
+    private let settingsManager = SettingsDataManager()
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -38,6 +41,9 @@ class ContactPermissionsViewController: UIViewController {
         button.setTitle("Grant Access", for: .normal)
         button.setTitleColor(UIColor(white: 0.3, alpha: 1.0), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.addTarget(self,
+                         action: #selector(didTapGrantAccessButton(_:)),
+                         for: .touchUpInside)
 
         return button
     }()
@@ -82,6 +88,22 @@ class ContactPermissionsViewController: UIViewController {
             make.top.equalTo(self.detailLabel.snp.bottom).offset(40)
         }
 
+    }
+
+    // MARK: - Actions
+
+    @objc private func didTapGrantAccessButton(_ sender: Any) {
+        self.requestContactsAccess()
+    }
+
+    // MARK: - Internal Methods
+
+    private func requestContactsAccess() {
+        CNContactStore().requestAccess(for: CNEntityType.contacts) {
+            (granted, error) in
+            self.settingsManager.hasRequestedContactsPermission = true
+            self.settingsManager.hasAuthorizedContactsAccess = granted
+        }
     }
 
 }
