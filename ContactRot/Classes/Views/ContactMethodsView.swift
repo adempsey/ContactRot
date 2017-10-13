@@ -28,7 +28,8 @@ class ContactMethodsView: UIView {
         case Email
     }
 
-    private let reuseIdentifier = "cellidentifier"
+    private let phoneCellIdentifier = "phoneCellIdentifier"
+    private let defaultCellIdentifier = "defaultCellIdentifier"
 
     private let contact: Contact?
 
@@ -84,12 +85,29 @@ extension ContactMethodsView: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: ContactPhoneNumberTableViewCell = {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: self.reuseIdentifier) else {
-                return ContactPhoneNumberTableViewCell(style: .default, reuseIdentifier: self.reuseIdentifier)
+        let cell: UITableViewCell = {
+
+            let identifier: String = {
+                switch indexPath.section {
+                    case TableViewSections.Phone.rawValue:
+                        return self.phoneCellIdentifier
+                    default:
+                        return self.defaultCellIdentifier
+                }
+            }()
+
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier) else {
+
+                if indexPath.section == TableViewSections.Phone.rawValue {
+                    return ContactPhoneNumberTableViewCell(style: .default,
+                                                           reuseIdentifier: identifier)
+                } else {
+                    return UITableViewCell(style: .default, reuseIdentifier: identifier)
+                }
+
             }
 
-            return cell as! ContactPhoneNumberTableViewCell
+            return cell
         }()
 
         let title: String = {
@@ -103,8 +121,11 @@ extension ContactMethodsView: UITableViewDataSource {
             }
         }()
 
-        cell.delegate = self
         cell.textLabel?.text = title
+
+        if let phoneCell = cell as? ContactPhoneNumberTableViewCell {
+            phoneCell.delegate = self
+        }
 
         return cell
     }
