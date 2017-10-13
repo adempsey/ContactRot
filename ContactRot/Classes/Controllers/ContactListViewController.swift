@@ -71,6 +71,7 @@ extension ContactListViewController: UITableViewDataSource {
         let alpha = 1.0 - (CGFloat(abs(contact.lastContactDate.timeIntervalSinceNow)) / CGFloat(Date.DateInterval.HalfYear.rawValue))
 
         cell.textLabel?.text = String(format: "%@ %@", contact.givenName, contact.familyName)
+        cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 18.0)
         cell.textLabel?.alpha = alpha
 
         let detailText = String(format: "Last contacted %@", contact.lastContactDate.relativeFormat())
