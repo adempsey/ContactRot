@@ -22,8 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
 
         if let window = self.window {
-            let contactList: ContactListViewController = ContactListViewController()
-            let navigationController = UINavigationController(rootViewController: contactList)
+            let permissionsView = ContactPermissionsViewController()
+            let contactList = ContactListViewController()
+            let navigationController = UINavigationController(rootViewController: permissionsView)
             navigationController.navigationBar.tintColor = UIColor(white: 0.3, alpha: 1.0)
             window.rootViewController = navigationController
             window.makeKeyAndVisible()
