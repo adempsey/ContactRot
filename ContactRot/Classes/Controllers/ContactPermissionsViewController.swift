@@ -10,7 +10,15 @@ import UIKit
 import Contacts
 import SnapKit
 
+protocol ContactPermissionsViewControllerDelegate: NSObjectProtocol {
+    func permissionsViewControllerDidUpdatePermissions(_ viewController: UIViewController)
+}
+
 class ContactPermissionsViewController: UIViewController {
+
+    // MARK: - Public Properties
+
+    public weak var delegate: ContactPermissionsViewControllerDelegate?
 
     // MARK: - Private Properties
 
@@ -103,6 +111,8 @@ class ContactPermissionsViewController: UIViewController {
             (granted, error) in
             self.settingsManager.hasRequestedContactsPermission = true
             self.settingsManager.hasAuthorizedContactsAccess = granted
+
+            self.delegate?.permissionsViewControllerDidUpdatePermissions(self)
         }
     }
 

@@ -14,11 +14,16 @@ class ContainerViewController: UIViewController {
 
     private let settingsManager = SettingsDataManager()
 
-    private let authorizationViewController = ContactPermissionsViewController()
-    private let contactsListViewController = ContactListViewController()
+    private lazy var authorizationViewController: ContactPermissionsViewController = {
+        let viewController = ContactPermissionsViewController()
+        viewController.delegate = self
+
+        return viewController
+    }()
 
     private lazy var contactsListNavigationController: UINavigationController = {
-        let navigationController = UINavigationController(rootViewController: self.contactsListViewController)
+        let viewController = ContactListViewController()
+        let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.navigationBar.tintColor = UIColor(white: 0.3, alpha: 1.0)
 
         return navigationController
@@ -70,6 +75,16 @@ class ContainerViewController: UIViewController {
             self.addChildViewController(currentViewController)
             self.view.addSubview(currentViewController.view)
             self.reloadConstraints(for: currentViewController.view)
+        }
+    }
+
+}
+
+extension ContainerViewController: ContactPermissionsViewControllerDelegate {
+
+    func permissionsViewControllerDidUpdatePermissions(_ viewController: UIViewController) {
+        DispatchQueue.main.async {
+            self.reloadChildView()
         }
     }
 
