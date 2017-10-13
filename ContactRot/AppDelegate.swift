@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let window = self.window {
             let contactList: ContactListViewController = ContactListViewController()
             let navigationController = UINavigationController(rootViewController: contactList)
+            navigationController.navigationBar.tintColor = UIColor(white: 0.3, alpha: 1.0)
             window.rootViewController = navigationController
             window.makeKeyAndVisible()
         }
