@@ -20,7 +20,7 @@ extension Date {
     func relativeFormat() -> String {
         let deltaInterval = abs(self.timeIntervalSinceNow)
 
-        if deltaInterval < Date.DateInterval.Day.rawValue {
+        if NSCalendar.current.isDateInToday(self) {
             return NSLocalizedString("today",
                                      comment: """
                                                  Indicates that the time that someone was last
