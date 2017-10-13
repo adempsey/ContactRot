@@ -44,12 +44,24 @@ class ContactListDataProvider: NSObject {
         self.contacts = contacts.reduce([String: [Contact]]()) {
             (accum, contact) in
             var dict = accum
-            let key = String(describing: contact.givenName.first!).lowercased()
 
-            if dict[key] == nil {
-                dict[key] = [contact]
-            } else {
-                dict[key]!.append(contact)
+            let key: String? = {
+                if let firstChar = contact.givenName.first {
+                    return String(describing: firstChar).lowercased()
+
+                } else if let firstChar = contact.familyName.first {
+                    return String(describing: firstChar).lowercased()
+                }
+
+                return nil
+            }()
+
+            if let key = key {
+                if dict[key] == nil {
+                    dict[key] = [contact]
+                } else {
+                    dict[key]!.append(contact)
+                }
             }
 
             return dict
