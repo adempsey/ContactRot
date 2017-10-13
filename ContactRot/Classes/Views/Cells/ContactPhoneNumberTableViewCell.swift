@@ -65,7 +65,12 @@ class ContactPhoneNumberTableViewCell: UITableViewCell {
             (make) in
             make.width.height.equalTo(36)
             make.centerY.equalTo(self)
-            make.right.equalTo(self).offset(-20)
+
+            if let textLabel = self.textLabel {
+                make.trailing.equalTo(textLabel)
+            } else {
+                make.trailing.equalTo(self.contentView)
+            }
         }
 
         self.phoneButton.snp.makeConstraints {
