@@ -17,8 +17,21 @@ class ContactViewController: UIViewController {
 
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.text = self.contact?.givenName
+        label.text = String(format: "%@ %@", self.contact?.givenName ?? "", self.contact?.familyName ?? "")
         label.textAlignment = .center
+
+        return label
+    }()
+
+    private lazy var miniNameLabel: UILabel = {
+        let label = UILabel()
+
+        let firstInitial = String(describing: self.contact?.givenName.uppercased().first ?? Character(""))
+        let secondInitial = String(describing: self.contact?.familyName.uppercased().first ?? Character(""))
+        label.text = String(format: "%@%@", firstInitial, secondInitial)
+        label.textAlignment = .center
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 36)
 
         return label
     }()
@@ -34,15 +47,25 @@ class ContactViewController: UIViewController {
         return label
     }()
 
-    private lazy var contactThumbnailView: UIImageView = {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 2, height: 2))
-        if let imageData = self.contact?.thumbnailData {
-            imageView.image = UIImage(data: imageData)
-        }
-        imageView.clipsToBounds = true
-        imageView.autoresizesSubviews = true
+    private lazy var contactThumbnailView: UIView = {
 
-        return imageView
+        if let thumbnailData = self.contact?.thumbnailData {
+            let imageView = UIImageView()
+            if let imageData = self.contact?.thumbnailData {
+                imageView.image = UIImage(data: imageData)
+            }
+            imageView.clipsToBounds = true
+            imageView.autoresizesSubviews = true
+
+            return imageView
+
+        } else {
+            let view = UIView()
+            view.backgroundColor = .green
+            view.addSubview(self.miniNameLabel)
+
+            return view
+        }
     }()
 
     private lazy var contactInfoView: UIView = {
@@ -124,6 +147,13 @@ class ContactViewController: UIViewController {
             (make) in
             make.top.equalTo(self.contactInfoView.snp.bottom)
             make.left.right.bottom.equalTo(self.view)
+        }
+
+        if self.miniNameLabel.isDescendant(of: self.contactThumbnailView) {
+            self.miniNameLabel.snp.makeConstraints {
+                (make) in
+                make.edges.equalTo(self.contactThumbnailView)
+            }
         }
     }
 
