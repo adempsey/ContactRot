@@ -11,6 +11,8 @@ import SnapKit
 
 class ContactListViewController: UIViewController {
 
+    // MARK: - Private Properties
+
     fileprivate let reuseIdentifier = "contact_list_cell"
 
     private lazy var tableView: UITableView = {
@@ -24,6 +26,8 @@ class ContactListViewController: UIViewController {
 
     fileprivate let dataProvider = ContactListDataProvider()
 
+    // MARK: - View Controller Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,6 +39,16 @@ class ContactListViewController: UIViewController {
         self.dataProvider.retrieve()
         self.tableView.reloadData()
     }
+
+    override func viewWillTransition(to size: CGSize,
+                                     with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        // Sorry
+        self.tableView.reloadData()
+    }
+
+    // MARK: - Layout
 
     private func createConstraints() {
         self.tableView.snp.makeConstraints { (make) -> Void in
