@@ -13,7 +13,8 @@ class Contact: Codable {
     public static let supportedKeys: [CNKeyDescriptor] = [CNContactGivenNameKey as CNKeyDescriptor,
                                                           CNContactFamilyNameKey as CNKeyDescriptor,
                                                           CNContactPhoneNumbersKey as CNKeyDescriptor,
-                                                          CNContactEmailAddressesKey as CNKeyDescriptor]
+                                                          CNContactEmailAddressesKey as CNKeyDescriptor,
+                                                          CNContactThumbnailImageDataKey as CNKeyDescriptor]
 
     let givenName: String
     let familyName: String
@@ -21,6 +22,7 @@ class Contact: Codable {
     let emailAddresses: [String]
     let contactID: String
     let lastContactDate: Date
+    let thumbnailData: Data?
 
     init(data: CNContact, contactDate: Date) {
         self.givenName = data.givenName
@@ -29,6 +31,7 @@ class Contact: Codable {
         self.emailAddresses = data.emailAddresses.map() { $0.value as String }
         self.contactID = data.identifier
         self.lastContactDate = contactDate
+        self.thumbnailData = data.thumbnailImageData
     }
 
 }

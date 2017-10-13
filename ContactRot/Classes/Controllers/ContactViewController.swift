@@ -34,22 +34,25 @@ class ContactViewController: UIViewController {
         return label
     }()
 
+    private lazy var contactThumbnailView: UIImageView = {
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 2, height: 2))
+        if let imageData = self.contact?.thumbnailData {
+            imageView.image = UIImage(data: imageData)
+        }
+        imageView.clipsToBounds = true
+        imageView.autoresizesSubviews = true
+
+        return imageView
+    }()
+
     private lazy var contactInfoView: UIView = {
         let view = UIView()
         view.backgroundColor = .gray
-        view.addSubview(self.contactInfoStackView)
+        view.addSubview(self.contactThumbnailView)
+        view.addSubview(self.nameLabel)
+        view.addSubview(self.contactDateLabel)
 
         return view
-    }()
-
-    private lazy var contactInfoStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.backgroundColor = .black
-        stackView.addArrangedSubview(self.nameLabel)
-        stackView.addArrangedSubview(self.contactDateLabel)
-
-        return stackView
     }()
 
     private lazy var contactMethodsViewController: ContactMethodsViewController = {
@@ -91,13 +94,30 @@ class ContactViewController: UIViewController {
 
         self.contactInfoView.snp.makeConstraints {
             (make) in
-            make.left.top.right.equalTo(self.view)
-            make.height.equalTo(300)
+            make.left.right.equalTo(self.view)
+            make.top.equalTo(self.topLayoutGuide.snp.bottom)
         }
 
-        self.contactInfoStackView.snp.makeConstraints {
+        self.contactThumbnailView.snp.makeConstraints {
             (make) in
-            make.edges.equalTo(self.contactInfoView)
+            make.centerX.equalTo(self.contactInfoView)
+            make.top.equalTo(self.contactInfoView).offset(30)
+            make.width.height.equalTo(80)
+        }
+
+        self.nameLabel.snp.makeConstraints {
+            (make) in
+            make.centerX.equalTo(self.contactInfoView)
+            make.top.equalTo(self.contactThumbnailView.snp.bottom).offset(20)
+            make.height.equalTo(24)
+        }
+
+        self.contactDateLabel.snp.makeConstraints {
+            (make) in
+            make.centerX.equalTo(self.nameLabel)
+            make.top.equalTo(self.nameLabel.snp.bottom).offset(20)
+            make.bottom.equalTo(self.contactInfoView).offset(-30)
+            make.height.equalTo(24)
         }
 
         self.contactMethodsViewController.view.snp.makeConstraints {
