@@ -19,6 +19,7 @@ class ContactViewController: UIViewController {
         let label = UILabel()
         label.text = String(format: "%@ %@", self.contact?.givenName ?? "", self.contact?.familyName ?? "")
         label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 24)
 
         return label
     }()
@@ -31,7 +32,7 @@ class ContactViewController: UIViewController {
         label.text = String(format: "%@%@", firstInitial, secondInitial)
         label.textAlignment = .center
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 36)
+        label.font = UIFont.boldSystemFont(ofSize: 36)
 
         return label
     }()
@@ -43,6 +44,7 @@ class ContactViewController: UIViewController {
             label.text = text
         }
         label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 14)
 
         return label
     }()
@@ -62,7 +64,7 @@ class ContactViewController: UIViewController {
 
             } else {
                 let view = UIView()
-                view.backgroundColor = .green
+                view.backgroundColor = UIColor(white: 0.4, alpha: 1.0)
                 view.addSubview(self.miniNameLabel)
 
                 return view
@@ -77,7 +79,7 @@ class ContactViewController: UIViewController {
 
     private lazy var contactInfoView: UIView = {
         let view = UIView()
-        view.backgroundColor = .gray
+        view.backgroundColor = UIColor(white: 0.97, alpha: 1.0)
         view.addSubview(self.contactThumbnailView)
         view.addSubview(self.nameLabel)
         view.addSubview(self.contactDateLabel)

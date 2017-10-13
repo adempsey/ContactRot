@@ -39,6 +39,8 @@ class ContactMethodsView: UIView {
     init(contact: Contact) {
         self.contact = contact
         super.init(frame: .zero)
+
+        self.tableView.backgroundColor = .white
         self.addSubview(self.tableView)
         self.createConstraints()
     }
