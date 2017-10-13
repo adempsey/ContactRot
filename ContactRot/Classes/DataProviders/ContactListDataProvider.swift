@@ -64,6 +64,17 @@ class ContactListDataProvider: NSObject {
 
             return dict
         }
+
+        self.contacts = self.contacts.mapValues {
+            (value) in
+            return value.sorted {
+                (contactA, contactB) in
+                let concatenatedNameA = contactA.givenName.appending(contactA.familyName)
+                let concatenatedNameB = contactB.givenName.appending(contactB.familyName)
+
+                return concatenatedNameA.lowercased() < concatenatedNameB.lowercased()
+            }
+        }
     }
 
     public subscript(section: Int) -> [Contact]? {
