@@ -35,8 +35,6 @@ class ContactListDataProvider: NSObject {
             contacts.append(contact)
         }
 
-        try! self.dataManager.saveNew(contacts: contacts)
-
         contacts = contacts.filter {
             $0.lastContactDate.timeIntervalSinceNow < Date.DateInterval.HalfYear.rawValue
         }

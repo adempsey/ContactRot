@@ -20,6 +20,9 @@ class ContactViewController: UIViewController {
         label.text = String(format: "%@ %@", self.contact?.givenName ?? "", self.contact?.familyName ?? "")
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 24)
+        if let contact = self.contact {
+            label.alpha = UIColor.alphaForDate(contact.lastContactDate)
+        }
 
         return label
     }()
@@ -42,6 +45,7 @@ class ContactViewController: UIViewController {
         if let contact = self.contact {
             let text = String(format: "Last contacted %@", contact.lastContactDate.relativeFormat())
             label.text = text
+            label.alpha = UIColor.alphaForDate(contact.lastContactDate)
         }
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 14)
@@ -74,6 +78,10 @@ class ContactViewController: UIViewController {
 
         view.layer.cornerRadius = 40
         view.layer.masksToBounds = true
+
+        if let contact = self.contact {
+            view.alpha = UIColor.alphaForDate(contact.lastContactDate)
+        }
 
         return view
     }()
