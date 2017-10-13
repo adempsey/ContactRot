@@ -154,7 +154,7 @@ class ContactViewController: UIViewController {
 
         self.scrollView.snp.makeConstraints {
             (make) in
-            make.top.equalTo(self.topLayoutGuide.snp.bottom)
+            make.top.equalTo(self.view)
             make.bottom.equalTo(self.bottomLayoutGuide.snp.top)
             make.leading.trailing.equalTo(self.view)
         }
