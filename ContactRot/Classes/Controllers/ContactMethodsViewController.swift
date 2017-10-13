@@ -11,6 +11,10 @@ import MessageUI
 
 class ContactMethodsViewController: UIViewController {
 
+    public var contactView: ContactMethodsView {
+        return self.contactMethodsView
+    }
+
     private let contact: Contact?
 
     private lazy var contactMethodsView: ContactMethodsView = {

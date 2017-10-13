@@ -93,6 +93,22 @@ class ContactViewController: UIViewController {
         return viewController
     }()
 
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.contentSize = CGSize(width: self.view.frame.size.width,
+                                        height: self.view.frame.size.height)
+        scrollView.backgroundColor = .white
+
+        return scrollView
+    }()
+
+    private lazy var containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+
+        return view
+    }()
+
     // MARK: - Initialization
 
     init(contact: Contact) {
@@ -110,12 +126,13 @@ class ContactViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = .white
+        self.view.addSubview(self.scrollView)
+        self.scrollView.addSubview(self.containerView)
 
-        self.view.addSubview(self.contactInfoView)
+        self.containerView.addSubview(self.contactInfoView)
 
         self.addChildViewController(self.contactMethodsViewController)
-        self.view.addSubview(self.contactMethodsViewController.view)
+        self.containerView.addSubview(self.contactMethodsViewController.view)
 
         self.createContraints()
     }
@@ -124,10 +141,22 @@ class ContactViewController: UIViewController {
 
     private func createContraints() {
 
+        self.scrollView.snp.makeConstraints {
+            (make) in
+            make.top.equalTo(self.topLayoutGuide.snp.bottom)
+            make.bottom.equalTo(self.bottomLayoutGuide.snp.top)
+            make.leading.trailing.equalTo(self.view)
+        }
+
+        self.containerView.snp.makeConstraints {
+            (make) in
+            make.edges.equalTo(self.scrollView)
+            make.width.equalTo(self.view)
+        }
+
         self.contactInfoView.snp.makeConstraints {
             (make) in
-            make.left.right.equalTo(self.view)
-            make.top.equalTo(self.topLayoutGuide.snp.bottom)
+            make.top.left.right.equalTo(self.containerView)
         }
 
         self.contactThumbnailView.snp.makeConstraints {
@@ -155,7 +184,8 @@ class ContactViewController: UIViewController {
         self.contactMethodsViewController.view.snp.makeConstraints {
             (make) in
             make.top.equalTo(self.contactInfoView.snp.bottom)
-            make.left.right.bottom.equalTo(self.view)
+            make.left.bottom.right.equalTo(self.containerView)
+            make.height.greaterThanOrEqualTo(300)
         }
 
         if self.miniNameLabel.isDescendant(of: self.contactThumbnailView) {

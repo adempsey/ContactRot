@@ -19,6 +19,10 @@ class ContactMethodsView: UIView {
 
     public weak var delegate: ContactMethodsViewDelegate?
 
+    public var contentSize: CGFloat {
+        return self.tableView.contentSize.height + 1
+    }
+
     fileprivate enum TableViewSections: Int {
         case Phone
         case Email
@@ -28,10 +32,11 @@ class ContactMethodsView: UIView {
 
     private let contact: Contact?
 
-    private lazy var tableView: UITableView = {
+    public lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.isScrollEnabled = false
 
         return tableView
     }()
