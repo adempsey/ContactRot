@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8D1821E11F8EEE0F00DA9522 /* Date+ContactRotAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1821E01F8EEE0F00DA9522 /* Date+ContactRotAdditions.swift */; };
 		8D1821E41F8EFB8800DA9522 /* ContactMethodsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1821E31F8EFB8800DA9522 /* ContactMethodsView.swift */; };
+		8D2FB64B1F9168860045EF24 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2FB64A1F9168860045EF24 /* ContainerViewController.swift */; };
 		8D606ACF1F8DBE4E00BB169A /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D606ACE1F8DBE4E00BB169A /* ContactViewController.swift */; };
 		8D91AD7D1F8C4B0200645D0F /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D91AD7C1F8C4B0200645D0F /* Contact.swift */; };
 		8D91AD801F8C4F9000645D0F /* ContactDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D91AD7F1F8C4F9000645D0F /* ContactDataManager.swift */; };
@@ -30,6 +31,7 @@
 		3AC6EB0362F55524C8A0DDCF /* Pods-ContactRot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactRot.release.xcconfig"; path = "Pods/Target Support Files/Pods-ContactRot/Pods-ContactRot.release.xcconfig"; sourceTree = "<group>"; };
 		8D1821E01F8EEE0F00DA9522 /* Date+ContactRotAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ContactRotAdditions.swift"; sourceTree = "<group>"; };
 		8D1821E31F8EFB8800DA9522 /* ContactMethodsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactMethodsView.swift; sourceTree = "<group>"; };
+		8D2FB64A1F9168860045EF24 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		8D606ACE1F8DBE4E00BB169A /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		8D91AD7C1F8C4B0200645D0F /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		8D91AD7F1F8C4F9000645D0F /* ContactDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactDataManager.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				8DB23BDA1F8F10E20034B1C4 /* ContactMethodsViewController.swift */,
 				8D606ACE1F8DBE4E00BB169A /* ContactViewController.swift */,
 				8DD1CA601F915B2600991D71 /* ContactPermissionsViewController.swift */,
+				8D2FB64A1F9168860045EF24 /* ContainerViewController.swift */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
@@ -325,6 +328,7 @@
 			files = (
 				8DD1CA5D1F914C8900991D71 /* UIColor+ContactRotAdditions.swift in Sources */,
 				8DE0DD891F86DB0D00C5E0E2 /* ContactListViewController.swift in Sources */,
+				8D2FB64B1F9168860045EF24 /* ContainerViewController.swift in Sources */,
 				8DD1CA611F915B2600991D71 /* ContactPermissionsViewController.swift in Sources */,
 				8D91AD801F8C4F9000645D0F /* ContactDataManager.swift in Sources */,
 				8DE0DDAB1F86E2B800C5E0E2 /* ContactListDataProvider.swift in Sources */,
