@@ -48,7 +48,10 @@ class ContactListViewController: UIViewController {
 
         self.view.addSubview(self.tableView)
         self.createConstraints()
+    }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.dataProvider.retrieve()
         self.tableView.reloadData()
     }
