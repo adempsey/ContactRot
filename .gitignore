@@ -21,3 +21,6 @@ DerivedData
 
 # Bundler
 .bundle
+
+# Fastlane
+fastlane/report.xml

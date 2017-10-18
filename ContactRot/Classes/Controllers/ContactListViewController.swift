@@ -21,6 +21,7 @@ class ContactListViewController: UIViewController {
         tableView.delegate = self
         tableView.sectionHeaderHeight = 0
         tableView.sectionFooterHeight = 0
+        tableView.sectionIndexBackgroundColor = .clear
 
         return tableView
     }()
@@ -152,4 +153,9 @@ extension ContactListViewController: UITableViewDelegate {
 
         return view
     }
+
+    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    }
+
 }
