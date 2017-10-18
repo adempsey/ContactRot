@@ -22,6 +22,7 @@ class ContactListViewController: UIViewController {
         tableView.sectionHeaderHeight = 0
         tableView.sectionFooterHeight = 0
         tableView.sectionIndexBackgroundColor = .clear
+        tableView.sectionIndexColor = UIColor(white: 0.4, alpha: 1.0)
 
         return tableView
     }()
