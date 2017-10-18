@@ -98,6 +98,7 @@ class ContactViewController: UIViewController {
 
     private lazy var contactMethodsViewController: ContactMethodsViewController = {
         let viewController = ContactMethodsViewController(contact: contact!)
+        viewController.delegate = self
 
         return viewController
     }()
@@ -205,6 +206,20 @@ class ContactViewController: UIViewController {
                 make.edges.equalTo(self.contactThumbnailView)
             }
         }
+    }
+
+}
+
+extension ContactViewController: ContactMethodsViewControllerDelegate {
+
+    func didSuccessfullyContact(_ viewController: ContactMethodsViewController) {
+        let newDate = Date()
+        self.contact?.lastContactDate = newDate
+        self.nameLabel.alpha = UIColor.alphaForDate(newDate)
+        self.contactDateLabel.alpha = UIColor.alphaForDate(newDate)
+        self.contactThumbnailView.alpha = UIColor.alphaForDate(newDate)
+
+        self.contactDateLabel.text = String(format: "Last contacted %@", newDate.relativeFormat())
     }
 
 }
