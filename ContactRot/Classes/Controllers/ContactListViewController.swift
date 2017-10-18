@@ -28,12 +28,22 @@ class ContactListViewController: UIViewController {
 
     fileprivate let dataProvider = ContactListDataProvider()
 
+    private lazy var infoButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "ⓘ",
+                                     style: .plain,
+                                     target: self,
+                                     action: #selector(infoButtonTapped(_:)))
+
+        return button
+    }()
+
     // MARK: - View Controller Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = "ContactRot"
+        self.navigationItem.leftBarButtonItem = self.infoButton
 
         self.view.addSubview(self.tableView)
         self.createConstraints()
@@ -56,6 +66,14 @@ class ContactListViewController: UIViewController {
         self.tableView.snp.makeConstraints { (make) -> Void in
             make.edges.equalTo(self.view)
         }
+    }
+
+    // MARK: - Actions
+
+    @objc private func infoButtonTapped(_ id: Any) {
+        let infoViewController = InfoViewController()
+        let navigationController = UINavigationController(rootViewController: infoViewController)
+        self.present(navigationController, animated: true)
     }
 
 }
