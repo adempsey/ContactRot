@@ -30,7 +30,8 @@ class ContactListDataProvider: NSObject {
         try! CNContactStore().enumerateContacts(with: req) {
             contactData, stop in
             let contactID = contactData.identifier
-            let contactDate = existingContacts[contactID] ?? Date()
+            let randomInterval = -Double(arc4random_uniform(16070400))
+            let contactDate = existingContacts[contactID] ?? Date(timeInterval: randomInterval, since: Date())
             let contact = Contact(data: contactData, contactDate: contactDate)
             contacts.append(contact)
         }
