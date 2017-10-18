@@ -9,7 +9,13 @@
 import UIKit
 import MessageUI
 
+protocol ContactMethodsViewControllerDelegate: NSObjectProtocol {
+    func didSuccessfullyContact(_ viewController: ContactMethodsViewController)
+}
+
 class ContactMethodsViewController: UIViewController {
+
+    public weak var delegate: ContactMethodsViewControllerDelegate?
 
     public var contactView: ContactMethodsView {
         return self.contactMethodsView
@@ -94,6 +100,8 @@ extension ContactMethodsViewController: MFMailComposeViewControllerDelegate {
             guard (try? ContactDataManager.sharedInstance.updateContactDate(for: [contact])) != nil else {
                 return
             }
+
+            self.delegate?.didSuccessfullyContact(self)
         }
     }
 
@@ -111,6 +119,8 @@ extension ContactMethodsViewController: MFMessageComposeViewControllerDelegate {
             guard (try? ContactDataManager.sharedInstance.updateContactDate(for: [contact])) != nil else {
                 return
             }
+
+            self.delegate?.didSuccessfullyContact(self)
         }
     }
 

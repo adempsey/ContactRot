@@ -21,7 +21,7 @@ class Contact: Codable {
     let phoneNumbers: [String]
     let emailAddresses: [String]
     let contactID: String
-    let lastContactDate: Date
+    var lastContactDate: Date
     let thumbnailData: Data?
 
     init(data: CNContact, contactDate: Date) {
