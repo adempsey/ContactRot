@@ -22,7 +22,7 @@ class ContactListTableViewCell: UITableViewCell {
         label.text = String(format: "%@%@", firstInitial, secondInitial)
         label.textAlignment = .center
         label.textColor = .white
-        label.font = UIFont.boldSystemFont(ofSize: 36)
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         
         return label
     }()
@@ -98,6 +98,11 @@ class ContactListTableViewCell: UITableViewCell {
             newFrame.origin.x = self.contactThumbnailView.frame.origin.x + 10 + self.contactThumbnailView.frame.size.width
             self.detailTextLabel?.frame = newFrame
         }
+        
+        var miniNameLabelFrame = self.contactThumbnailView.frame
+        miniNameLabelFrame.origin.x = 0
+        miniNameLabelFrame.origin.y = 0
+        self.miniNameLabel.frame = miniNameLabelFrame
     }
 
 }
