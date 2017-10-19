@@ -35,7 +35,27 @@ class InfoViewController: UIViewController {
 
     private lazy var descriptionView: UITextView = {
         let textView = UITextView()
-        textView.text = "ContactRot is a project intended to emphasize our increasing reliance on cloud storage for things like phone numbers, friends, etc... So much so that without it we begin to forget things. Ultimately these forms of storage act as memory for our brains, replacing what we used to keep there. When these items begin to disappear, we ultimately lose touch with people to the point of being forced to contact them in other ways (e.g., real life) to get the data back.\n\n\n\nCreated by Jonah Brucker-Cohen\nDeveloped by Andrew Dempsey"
+        let text = "ContactRot is an art project and live address book application intended to emphasize our increasing reliance on cloud storage for things like phone numbers, friends, etc... So much that without it we begin to forget things. Ultimately these forms of storage act as artificial memory for our brains, replacing what we used to keep there. When names and personal information begin to disappear, we ultimately lose touch with people to the point of being forced to contact them in other ways (e.g., real life) to get the data back.\n\nCreated by Jonah Brucker-Cohen\nhttp://www.coin-operated.com\n@coinop29\n\nDeveloped by Andrew Dempsey\nhttps://adempsey.github.io/"
+        
+        let attributedText = NSMutableAttributedString(string: text)
+        if let jonahWebsiteRange = text.range(of: "http://www.coin-operated.com") {
+            attributedText.addAttributes([.link: "http://www.coin-operated.com"],
+                                         range: NSRange(jonahWebsiteRange, in: text))
+        }
+        
+        if let jonahTwitterRange = text.range(of: "@coinop29") {
+            attributedText.addAttributes([.link: "https://twitter.com/@coinop29"],
+                                         range: NSRange(jonahTwitterRange, in: text))
+        }
+        
+        if let andrewWebsiteRange = text.range(of: "https://adempsey.github.io/") {
+            attributedText.addAttributes([.link: "https://adempsey.github.io/"],
+                                         range: NSRange(andrewWebsiteRange, in: text))
+        }
+        
+        textView.attributedText = attributedText
+        
+        textView.isEditable = false
         textView.font = UIFont.systemFont(ofSize: 14.0)
 
         return textView
