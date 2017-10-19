@@ -30,8 +30,8 @@ class ContactViewController: UIViewController {
     private lazy var miniNameLabel: UILabel = {
         let label = UILabel()
 
-        let firstInitial = String(describing: self.contact?.givenName.uppercased().first ?? Character(""))
-        let secondInitial = String(describing: self.contact?.familyName.uppercased().first ?? Character(""))
+        let firstInitial = String(describing: self.contact?.givenName.uppercased().first ?? Character(" "))
+        let secondInitial = String(describing: self.contact?.familyName.uppercased().first ?? Character(" "))
         label.text = String(format: "%@%@", firstInitial, secondInitial)
         label.textAlignment = .center
         label.textColor = .white

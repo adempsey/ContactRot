@@ -23,6 +23,8 @@ class ContactListViewController: UIViewController {
         tableView.sectionFooterHeight = 0
         tableView.sectionIndexBackgroundColor = .clear
         tableView.sectionIndexColor = UIColor(white: 0.4, alpha: 1.0)
+        tableView.register(ContactListTableViewCell.self,
+                           forCellReuseIdentifier: self.reuseIdentifier)
 
         return tableView
     }()
@@ -93,33 +95,81 @@ extension ContactListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: self.reuseIdentifier) else {
-                return UITableViewCell(style: .subtitle,
-                                       reuseIdentifier: self.reuseIdentifier)
-            }
-            return cell
-        }()
 
         guard let contactList = self.dataProvider[indexPath.section] else {
-            return cell
+            return ContactListTableViewCell()
         }
-
+        
         let contact = contactList[indexPath.row]
+        
+//        var cell = tableView.dequeueReusableCell(withIdentifier: self.reuseIdentifier)
+//
+//        if (cell == nil) {
+        let cell = ContactListTableViewCell(contact, reuseIdentifier: self.reuseIdentifier)
+        
         let alpha = UIColor.alphaForDate(contact.lastContactDate)
-
+        
         cell.textLabel?.text = String(format: "%@ %@", contact.givenName, contact.familyName)
         cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 18.0)
         cell.textLabel?.alpha = alpha
-
+        
         let detailText = String(format: "Last contacted %@", contact.lastContactDate.relativeFormat())
         cell.detailTextLabel?.text = detailText
         cell.detailTextLabel?.alpha = alpha
-
         return cell
     }
-
+    
 }
+//        }
+        
+//        if let cell = cell {
+            //        let cell: ContactListTableViewCell = {
+            //            guard let cell = tableView.dequeueReusableCell(withIdentifier: self.reuseIdentifier) else {
+            //                return ContactListTableViewCell(contact,
+            //                                                reuseIdentifier: reuseIdentifier)
+            //            }
+            //            return cell as! ContactListTableViewCell
+            //        }()
+            
+    
+            
+            //        let view: UIView = {
+            //        if let imageData = contact.thumbnailData {
+            //            cell.imageView?.image = UIImage(data: imageData)
+            //        }
+            
+            //                return imageView
+            
+            //            } else {
+            //                let view = UIView()
+            ////                view.backgroundColor = UIColor(white: 0.4, alpha: 1.0)
+            ////                let label = UILabel()
+            ////
+            ////                let firstInitial = String(describing: contact.givenName.uppercased().first ?? Character(""))
+            ////                let secondInitial = String(describing: contact.familyName.uppercased().first ?? Character(""))
+            ////                label.text = String(format: "%@%@", firstInitial, secondInitial)
+            ////                label.textAlignment = .center
+            ////                label.textColor = .white
+            ////                label.font = UIFont.boldSystemFont(ofSize: 36)
+            ////                view.addSubview(label)
+            ////
+            //                return view
+            //            }
+            //        }()
+            
+            //        view.layer.cornerRadius = 40
+            //        view.layer.masksToBounds = true
+            //        view.alpha = UIColor.alphaForDate(contact.lastContactDate)
+            
+            //        cell.imageView = view
+//        }
+        
+
+//        return cell ?? UITableViewCell()
+    
+//    }
+
+//}
 
 extension ContactListViewController: UITableViewDelegate {
 
