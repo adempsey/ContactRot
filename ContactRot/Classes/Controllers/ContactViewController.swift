@@ -182,7 +182,7 @@ class ContactViewController: UIViewController {
             (make) in
             make.centerX.equalTo(self.contactInfoView)
             make.top.equalTo(self.contactThumbnailView.snp.bottom).offset(20)
-            make.height.equalTo(24)
+            make.height.equalTo(36)
         }
 
         self.contactDateLabel.snp.makeConstraints {
@@ -197,7 +197,7 @@ class ContactViewController: UIViewController {
             (make) in
             make.top.equalTo(self.contactInfoView.snp.bottom)
             make.left.bottom.right.equalTo(self.containerView)
-            make.height.greaterThanOrEqualTo(300)
+            make.height.equalTo(self.contactMethodsViewController.contentHeight)
         }
 
         if self.miniNameLabel.isDescendant(of: self.contactThumbnailView) {

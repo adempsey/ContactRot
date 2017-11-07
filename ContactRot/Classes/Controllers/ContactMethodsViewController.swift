@@ -21,6 +21,12 @@ class ContactMethodsViewController: UIViewController {
         return self.contactMethodsView
     }
 
+    public var contentHeight: CGFloat {
+        get {
+            return self.contactMethodsView.contentHeight
+        }
+    }
+
     private let contact: Contact?
 
     private lazy var contactMethodsView: ContactMethodsView = {
@@ -34,7 +40,6 @@ class ContactMethodsViewController: UIViewController {
     init(contact: Contact) {
         self.contact = contact
         super.init(nibName: nil, bundle: nil)
-        self.view = self.contactMethodsView
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -46,6 +51,7 @@ class ContactMethodsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view = self.contactMethodsView
     }
 
     private func composeEmail(to address: String) {
