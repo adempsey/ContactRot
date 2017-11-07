@@ -170,14 +170,14 @@ extension ContactMethodsView: ContactPhoneNumberTableViewCellDelegate {
 
     func contactPhoneNumberCellDidSelectCallButton(_ cell: ContactPhoneNumberTableViewCell) {
         let number = cell.textLabel!.text!.filter {
-            "0123456789".characters.contains($0)
+            "0123456789".contains($0)
         }
         self.delegate?.didSelectCallButton(self, number: number)
     }
 
     func contactPhoneNumberCellDidSelectMessageButton(_ cell: ContactPhoneNumberTableViewCell) {
         let number = cell.textLabel!.text!.filter {
-            "0123456789".characters.contains($0)
+            "0123456789".contains($0)
         }
         self.delegate?.didSelectMessageButton(self, number: number)
     }
