@@ -21,7 +21,7 @@ class ContactMethodsView: UIView {
 
     public var contentHeight: CGFloat {
         self.tableView.layoutIfNeeded()
-        return self.tableView.contentSize.height + 40
+        return self.tableView.contentSize.height + 100
     }
 
     fileprivate enum TableViewSections: Int {
