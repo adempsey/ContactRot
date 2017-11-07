@@ -58,7 +58,7 @@ class ContactDataManager {
             savedContacts = newContacts.reduce(savedContacts) {
                 (dict, contact) in
                 var d = dict
-                d[contact.contactID] = String(contact.lastContactDate.timeIntervalSince1970)
+                d[contact.contactID] = String(Date.never.timeIntervalSince1970)
                 return d
             }
 

@@ -113,7 +113,7 @@ extension ContactListViewController: UITableViewDataSource {
         cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 18.0)
         cell.textLabel?.alpha = alpha
         
-        let detailText = String(format: "Last contacted %@", contact.lastContactDate.relativeFormat())
+        let detailText = contact.lastContactDate.relativeFormatDescription()
         cell.detailTextLabel?.text = detailText
         cell.detailTextLabel?.alpha = alpha
         return cell

@@ -43,7 +43,7 @@ class ContactViewController: UIViewController {
     private lazy var contactDateLabel: UILabel = {
         let label = UILabel()
         if let contact = self.contact {
-            let text = String(format: "Last contacted %@", contact.lastContactDate.relativeFormat())
+            let text = contact.lastContactDate.relativeFormatDescription()
             label.text = text
             label.alpha = UIColor.alphaForDate(contact.lastContactDate)
         }
@@ -219,7 +219,7 @@ extension ContactViewController: ContactMethodsViewControllerDelegate {
         self.contactDateLabel.alpha = UIColor.alphaForDate(newDate)
         self.contactThumbnailView.alpha = UIColor.alphaForDate(newDate)
 
-        self.contactDateLabel.text = String(format: "Last contacted %@", newDate.relativeFormat())
+        self.contactDateLabel.text = newDate.relativeFormatDescription()
     }
 
 }
