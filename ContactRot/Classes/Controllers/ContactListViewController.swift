@@ -87,7 +87,7 @@ class ContactListViewController: UIViewController {
 extension ContactListViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 26
+        return self.dataProvider.sectionTitles.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -218,7 +218,7 @@ extension ContactListViewController: UITableViewDelegate {
                                           y: 0,
                                           width: self.view.frame.size.width - offset,
                                           height: 24))
-        label.text = String(UnicodeScalar(UInt8(section + 65)))
+        label.text = self.dataProvider.sectionTitles[section].capitalized
         label.font = UIFont.boldSystemFont(ofSize: 14)
 
         view.addSubview(label)
@@ -227,7 +227,7 @@ extension ContactListViewController: UITableViewDelegate {
     }
 
     func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+        return self.dataProvider.sectionTitles
     }
 
 }

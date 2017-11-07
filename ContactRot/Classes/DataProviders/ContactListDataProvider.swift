@@ -18,6 +18,14 @@ class ContactListDataProvider: NSObject {
         return self.contacts.count
     }
 
+    public var sectionTitles: [String] {
+        get {
+            return ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k",
+                    "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v",
+                    "w", "x", "y", "z", "#"]
+        }
+    }
+
     public func retrieve() {
 
         guard let existingContacts = try? self.dataManager.existingIDs() else {
@@ -47,10 +55,20 @@ class ContactListDataProvider: NSObject {
 
             let key: String? = {
                 if let firstChar = contact.givenName.first {
-                    return String(describing: firstChar).lowercased()
+                    let character = String(describing: firstChar).lowercased()
+                    if self.sectionTitles.contains(character) {
+                        return character
+                    } else {
+                        return "#"
+                    }
 
                 } else if let firstChar = contact.familyName.first {
-                    return String(describing: firstChar).lowercased()
+                    let character = String(describing: firstChar).lowercased()
+                    if self.sectionTitles.contains(character) {
+                        return character
+                    } else {
+                        return "#"
+                    }
                 }
 
                 return nil
@@ -81,14 +99,14 @@ class ContactListDataProvider: NSObject {
 
     public subscript(section: Int) -> [Contact]? {
         get {
-            let key = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"][section]
+            let key = self.sectionTitles[section]
             return self.contacts[key]
         }
     }
 
     public subscript(section: Int, row: Int) -> Contact? {
         get {
-            let key = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"][section]
+            let key = self.sectionTitles[section]
             return self.contacts[key]?[row]
         }
     }
