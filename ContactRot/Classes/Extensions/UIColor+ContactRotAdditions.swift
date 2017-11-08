@@ -11,11 +11,6 @@ import UIKit
 extension UIColor {
 
     static func alphaForDate(_ date: Date) -> CGFloat {
-
-        if date == Date.never {
-            return 1.0
-        }
-
         let minAlpha = 0.2 as CGFloat
         let dateInterval = CGFloat(abs(date.timeIntervalSinceNow))
         let halfYearInterval = CGFloat(Date.DateInterval.HalfYear.rawValue)

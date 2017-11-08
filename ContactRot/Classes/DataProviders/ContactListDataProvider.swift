@@ -46,8 +46,7 @@ class ContactListDataProvider: NSObject {
         try! self.dataManager.saveNew(contacts: contacts)
 
         contacts = contacts.filter {
-            $0.lastContactDate.timeIntervalSinceNow < Date.DateInterval.HalfYear.rawValue ||
-            $0.lastContactDate == Date.never
+            $0.lastContactDate.timeIntervalSinceNow < Date.DateInterval.HalfYear.rawValue
         }
 
         self.contacts = contacts.reduce([String: [Contact]]()) {
