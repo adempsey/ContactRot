@@ -25,6 +25,14 @@ class Contact: Codable {
     var lastContactDate: Date
     var hasBeenContacted: Bool
 
+    var fullNameWithEntropy: String {
+        get {
+            let fullName = String(format: "%@ %@", self.givenName, self.familyName)
+            let interval = self.lastContactDate.timeIntervalSinceNow
+            return fullName.stringWithEntropy(interval)
+        }
+    }
+
     init(data: CNContact, contactDate: Date) {
         self.givenName = data.givenName
         self.familyName = data.familyName

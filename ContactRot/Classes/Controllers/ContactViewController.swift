@@ -17,7 +17,7 @@ class ContactViewController: UIViewController {
 
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.text = String(format: "%@ %@", self.contact?.givenName ?? "", self.contact?.familyName ?? "")
+        label.text = self.contact?.fullNameWithEntropy
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 24)
         if let contact = self.contact {

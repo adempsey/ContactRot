@@ -109,7 +109,7 @@ extension ContactListViewController: UITableViewDataSource {
         
         let alpha = UIColor.alphaForDate(contact.lastContactDate)
         
-        cell.textLabel?.text = String(format: "%@ %@", contact.givenName, contact.familyName)
+        cell.textLabel?.text = contact.fullNameWithEntropy
         cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 18.0)
         cell.textLabel?.alpha = alpha
         
