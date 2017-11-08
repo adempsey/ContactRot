@@ -49,6 +49,12 @@ class ContactListDataProvider: NSObject {
             $0.lastContactDate.timeIntervalSinceNow < Date.DateInterval.HalfYear.rawValue
         }
 
+        let newContacts = try! self.dataManager.newContacts()
+        contacts = contacts.map {
+            $0.hasBeenContacted = !newContacts.contains($0.contactID)
+            return $0
+        }
+
         self.contacts = contacts.reduce([String: [Contact]]()) {
             (accum, contact) in
             var dict = accum

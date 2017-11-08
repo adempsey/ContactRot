@@ -21,8 +21,9 @@ class Contact: Codable {
     let phoneNumbers: [String]
     let emailAddresses: [String]
     let contactID: String
-    var lastContactDate: Date
     let thumbnailData: Data?
+    var lastContactDate: Date
+    var hasBeenContacted: Bool
 
     init(data: CNContact, contactDate: Date) {
         self.givenName = data.givenName
@@ -32,6 +33,15 @@ class Contact: Codable {
         self.contactID = data.identifier
         self.lastContactDate = contactDate
         self.thumbnailData = data.thumbnailImageData
+        self.hasBeenContacted = true
+    }
+
+    public func contactDateDescription() -> String {
+        if !self.hasBeenContacted {
+            return "New Contact"
+        }
+
+        return String(format: "Last contacted %@", self.lastContactDate.relativeFormat())
     }
 
 }

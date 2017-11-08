@@ -17,6 +17,11 @@ class ContactDataManager {
         case ContactsFileNotFound
     }
 
+    private enum ContactsFileKeys: String, Codable {
+        case LastContactDate = "last_contact_date"
+        case HasBeenContacted = "has_been_contacted"
+    }
+
     private let fileName = "contact_list.json"
 
     private let fileManager = FileManager.default
@@ -40,8 +45,23 @@ class ContactDataManager {
 
             return savedContacts.mapValues() {
                 value in
-                return Date(timeIntervalSince1970: Double(value)!)
+                let date = Double(value[ContactsFileKeys.LastContactDate]!)!
+                return Date(timeIntervalSince1970: Double(date))
             }
+
+        } catch let error {
+            throw error
+        }
+    }
+
+    public func newContacts() throws -> Set<String> {
+        do {
+            let savedContacts = try self.currentFileContents()
+            let newContacts = savedContacts.filter {
+                Bool($0.value[ContactsFileKeys.HasBeenContacted]!)! == false
+            }
+
+            return Set(newContacts.map { $0.key })
 
         } catch let error {
             throw error
@@ -58,7 +78,10 @@ class ContactDataManager {
             savedContacts = newContacts.reduce(savedContacts) {
                 (dict, contact) in
                 var d = dict
-                d[contact.contactID] = String(contact.lastContactDate.timeIntervalSince1970)
+                d[contact.contactID] = [
+                    ContactsFileKeys.LastContactDate: String(contact.lastContactDate.timeIntervalSince1970),
+                    ContactsFileKeys.HasBeenContacted: String(false),
+                ]
                 return d
             }
 
@@ -74,7 +97,10 @@ class ContactDataManager {
             var savedContacts = try self.currentFileContents()
 
             for contact: Contact in contacts {
-                savedContacts[contact.contactID] = String(Date().timeIntervalSince1970)
+                savedContacts[contact.contactID] = [
+                    ContactsFileKeys.LastContactDate: String(Date().timeIntervalSince1970),
+                    ContactsFileKeys.HasBeenContacted: String(true),
+                ]
             }
 
             try self.replaceFile(with: savedContacts)
@@ -86,19 +112,19 @@ class ContactDataManager {
 
     // MARK: - Helper Methods
 
-    private func currentFileContents() throws -> [String:String] {
+    private func currentFileContents() throws -> [String:[ContactsFileKeys:String]] {
         do {
             let filePathURL = try self.currentFilePath()
             let fileContents = try Data(contentsOf: filePathURL)
 
-            return try JSONDecoder().decode(Dictionary<String,String>.self,
+            return try JSONDecoder().decode(Dictionary<String,[ContactsFileKeys:String]>.self,
                                             from: fileContents)
         } catch let error {
             throw error
         }
     }
 
-    private func replaceFile(with contents: [String:String]) throws {
+    private func replaceFile(with contents: [String:[ContactsFileKeys:String]]) throws {
 
         do {
             let filePathURL = try self.currentFilePath()
