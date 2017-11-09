@@ -18,6 +18,7 @@ class InfoViewController: UIViewController {
         label.text = "ContactRot"
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 36)
+        label.textColor = UIColor.contactRotLightGray()
         label.numberOfLines = 0
 
         return label
@@ -28,6 +29,7 @@ class InfoViewController: UIViewController {
         label.text = "Copyright © 2017\nJonah Brucker-Cohen\nAndrew Dempsey"
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 16.0)
+        label.textColor = UIColor.contactRotLightGray()
         label.numberOfLines = 0
 
         return label
@@ -57,6 +59,9 @@ class InfoViewController: UIViewController {
         
         textView.isEditable = false
         textView.font = UIFont.systemFont(ofSize: 14.0)
+        textView.textColor = UIColor.contactRotLightGray()
+        textView.backgroundColor = UIColor.contactRotDarkGray()
+        textView.textAlignment = .center
 
         return textView
     }()
@@ -65,7 +70,7 @@ class InfoViewController: UIViewController {
         let closeButton = UIBarButtonItem(barButtonSystemItem: .stop,
                                           target: self,
                                           action: #selector(cancelButtonTapped(_:)))
-        closeButton.tintColor = UIColor(white: 0.4, alpha: 1.0)
+        closeButton.tintColor = UIColor.contactRotLightGray()
 
         return closeButton
     }()
@@ -75,7 +80,7 @@ class InfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = UIColor.contactRotDarkGray()
 
         self.title = "About"
         self.navigationItem.leftBarButtonItem = self.closeButton

@@ -47,7 +47,7 @@ class ContactMethodsView: UIView {
         self.contact = contact
         super.init(frame: .zero)
 
-        self.tableView.backgroundColor = .white
+        self.tableView.backgroundColor = UIColor.contactRotDarkGray()
         self.addSubview(self.tableView)
         self.createConstraints()
     }
@@ -122,7 +122,9 @@ extension ContactMethodsView: UITableViewDataSource {
             }
         }()
 
+        cell.backgroundColor = UIColor.contactRotGray()
         cell.textLabel?.text = title
+        cell.textLabel?.textColor = UIColor.contactRotLightGray()
 
         if let phoneCell = cell as? ContactPhoneNumberTableViewCell {
             phoneCell.delegate = self

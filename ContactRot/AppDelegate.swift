@@ -27,7 +27,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window.makeKeyAndVisible()
         }
 
+        self.setupAppearances()
+
         return true
+    }
+
+    private func setupAppearances() {
+
+        UIApplication.shared.statusBarStyle = .lightContent
+
+        UILabel.appearance().textColor = UIColor.contactRotLightGray()
+
+        UITableView.appearance().backgroundColor = UIColor.contactRotDarkGray()
+
+        UITextView.appearance().textColor = UIColor.contactRotLightGray()
+        UITextView.appearance().tintColor = UIColor.contactRotBlue()
+
+        UINavigationBar.appearance().barTintColor = UIColor.contactRotGray()
+        UINavigationBar.appearance().tintColor = UIColor.contactRotLightGray()
+        UINavigationBar.appearance().titleTextAttributes = [
+            .foregroundColor: UIColor.contactRotLightGray()
+        ]
     }
 
 }

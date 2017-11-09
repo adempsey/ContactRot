@@ -24,7 +24,9 @@ class ContactPhoneNumberTableViewCell: UITableViewCell {
 
     private lazy var phoneButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(named: "icon-phone"), for: .normal)
+        let image = UIImage(named: "icon-phone")?.withRenderingMode(.alwaysTemplate)
+        button.setBackgroundImage(image, for: .normal)
+        button.tintColor = UIColor.contactRotBlue()
         button.addTarget(self,
                          action: #selector(didSelectCallButton(_:)),
                          for: .touchUpInside)
@@ -34,7 +36,9 @@ class ContactPhoneNumberTableViewCell: UITableViewCell {
 
     private lazy var messageButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(named: "icon-message"), for: .normal)
+        let image = UIImage(named: "icon-message")?.withRenderingMode(.alwaysTemplate)
+        button.setBackgroundImage(image, for: .normal)
+        button.tintColor = UIColor.contactRotBlue()
         button.addTarget(self,
                          action: #selector(didSelectMessageButton(_:)),
                          for: .touchUpInside)

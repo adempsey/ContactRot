@@ -59,7 +59,7 @@ class ContactPermissionsViewController: UIViewController {
     private lazy var grantAccessButton: UIButton = {
         let button = UIButton()
         button.setTitle("Grant Access", for: .normal)
-        button.setTitleColor(UIColor(white: 0.3, alpha: 1.0), for: .normal)
+        button.setTitleColor(UIColor.contactRotLightGray(), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.addTarget(self,
                          action: #selector(didTapGrantAccessButton(_:)),
@@ -73,7 +73,7 @@ class ContactPermissionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = UIColor.contactRotDarkGray()
         self.view.addSubview(self.titleLabel)
         self.view.addSubview(self.detailLabel)
         self.view.addSubview(self.grantAccessButton)

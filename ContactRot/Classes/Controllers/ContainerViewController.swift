@@ -23,7 +23,6 @@ class ContainerViewController: UIViewController {
     private var contactsListNavigationController: UINavigationController {
         let viewController = ContactListViewController()
         let navigationController = UINavigationController(rootViewController: viewController)
-        navigationController.navigationBar.tintColor = UIColor(white: 0.3, alpha: 1.0)
 
         return navigationController
     }
