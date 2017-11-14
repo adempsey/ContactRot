@@ -46,7 +46,7 @@ class Contact: Codable {
 
     public func contactDateDescription() -> String {
         if !self.hasBeenContacted {
-            return "New Contact"
+            return "Not yet contacted"
         }
 
         return String(format: "Last contacted %@", self.lastContactDate.relativeFormat())
