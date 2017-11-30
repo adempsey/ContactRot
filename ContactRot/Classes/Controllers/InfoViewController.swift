@@ -48,6 +48,27 @@ class InfoViewController: UIViewController {
         return label
     }()
 
+    private lazy var colorSwitchLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Use dark mode"
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 14.0)
+        label.textColor = UIColor.contactRotTextColor()
+        label.numberOfLines = 0
+
+        return label
+    }()
+
+    private lazy var colorSwitch: UISwitch = {
+        let colorSwitch = UISwitch()
+        colorSwitch.onTintColor = UIColor.contactRotBlue()
+        colorSwitch.addTarget(self,
+                              action: #selector(colorSwitchToggled(_:)),
+                              for: .valueChanged)
+
+        return colorSwitch
+    }()
+
     private lazy var descriptionView: UITextView = {
         let textView = UITextView()
         let text = "ContactRot is an art project and live address book application intended to emphasize our increasing reliance on cloud storage for things like phone numbers, friends, etc... So much that without it we begin to forget things. Ultimately these forms of storage act as artificial memory for our brains, replacing what we used to keep there. When names and personal information begin to disappear, we ultimately lose touch with people to the point of being forced to contact them in other ways (e.g., real life) to get the data back.\n\nCreated by Jonah Brucker-Cohen\nhttp://www.coin-operated.com\n@coinop29\n\nDeveloped by Andrew Dempsey\nhttps://adempsey.github.io/"
@@ -105,6 +126,8 @@ class InfoViewController: UIViewController {
         self.containerView.addSubview(self.titleLabel)
         self.containerView.addSubview(self.authorLabel)
         self.containerView.addSubview(self.descriptionView)
+        self.containerView.addSubview(self.colorSwitchLabel)
+        self.containerView.addSubview(self.colorSwitch)
 
         self.createConstraints()
     }
@@ -124,7 +147,7 @@ class InfoViewController: UIViewController {
             (make) in
             make.edges.equalTo(self.scrollView)
             make.width.equalTo(self.view)
-            make.bottom.equalTo(self.descriptionView)
+            make.bottom.equalTo(self.colorSwitch).offset(40)
         }
 
         self.titleLabel.snp.makeConstraints {
@@ -152,12 +175,31 @@ class InfoViewController: UIViewController {
             make.height.equalTo(sizeThatFits)
         }
 
+        self.colorSwitchLabel.snp.makeConstraints {
+            (make) in
+            make.centerX.equalTo(self.containerView)
+            make.top.equalTo(self.descriptionView.snp.bottom).offset(40)
+            make.width.equalTo(self.containerView)
+        }
+
+        self.colorSwitch.snp.makeConstraints {
+            (make) in
+            make.centerX.equalTo(self.containerView)
+            make.top.equalTo(self.colorSwitchLabel.snp.bottom).offset(10)
+        }
+
     }
 
     // MARK: - Actions
 
     @objc private func cancelButtonTapped(_ sender: Any) {
         self.dismiss(animated: true)
+    }
+
+    @objc private func colorSwitchToggled(_ sender: Any) {
+        if let senderSwitch = sender as? UISwitch, senderSwitch == self.colorSwitch {
+            print("changed to \(self.colorSwitch.isOn)")
+        }
     }
 
 }
