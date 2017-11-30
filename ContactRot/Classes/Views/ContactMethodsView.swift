@@ -130,7 +130,14 @@ extension ContactMethodsView: UITableViewDataSource {
             cell.textLabel?.text = title
         }
 
-        cell.textLabel?.textColor = UIColor.contactRotTextColor()
+        var textColor = UIColor.contactRotTextColor()
+
+        if let contactDate = self.contact?.lastContactDate {
+            let alpha = UIColor.alphaForDate(contactDate)
+            textColor = textColor.withAlphaComponent(alpha)
+        }
+
+        cell.textLabel?.textColor = textColor
 
         if let phoneCell = cell as? ContactPhoneNumberTableViewCell {
             phoneCell.delegate = self
