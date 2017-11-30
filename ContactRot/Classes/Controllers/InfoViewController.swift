@@ -13,6 +13,19 @@ class InfoViewController: UIViewController {
 
     // MARK: - Private Properties
 
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+
+        return scrollView
+    }()
+
+    private lazy var containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.contactRotBackgroundColor()
+
+        return view
+    }()
+
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "ContactRot"
@@ -62,6 +75,7 @@ class InfoViewController: UIViewController {
         textView.textColor = UIColor.contactRotTextColor()
         textView.backgroundColor = UIColor.contactRotBackgroundColor()
         textView.textAlignment = .center
+        textView.isScrollEnabled = false
 
         return textView
     }()
@@ -82,12 +96,15 @@ class InfoViewController: UIViewController {
 
         self.view.backgroundColor = UIColor.contactRotBackgroundColor()
 
+        self.view.addSubview(self.scrollView)
+        self.scrollView.addSubview(self.containerView)
+
         self.title = "About"
         self.navigationItem.leftBarButtonItem = self.closeButton
 
-        self.view.addSubview(self.titleLabel)
-        self.view.addSubview(self.authorLabel)
-        self.view.addSubview(self.descriptionView)
+        self.containerView.addSubview(self.titleLabel)
+        self.containerView.addSubview(self.authorLabel)
+        self.containerView.addSubview(self.descriptionView)
 
         self.createConstraints()
     }
@@ -96,25 +113,43 @@ class InfoViewController: UIViewController {
 
     private func createConstraints() {
 
+        self.scrollView.snp.makeConstraints {
+            (make) in
+            make.top.equalTo(self.view)
+            make.bottom.equalTo(self.bottomLayoutGuide.snp.top)
+            make.leading.trailing.equalTo(self.view)
+        }
+
+        self.containerView.snp.makeConstraints {
+            (make) in
+            make.edges.equalTo(self.scrollView)
+            make.width.equalTo(self.view)
+            make.bottom.equalTo(self.descriptionView)
+        }
+
         self.titleLabel.snp.makeConstraints {
             (make) in
-            make.centerX.equalTo(self.view)
-            make.top.equalTo(self.topLayoutGuide.snp.bottom).offset(40)
-            make.width.equalTo(self.view).offset(-40)
+            make.centerX.equalTo(self.containerView)
+            make.top.equalTo(self.containerView.snp.top).offset(40)
+            make.width.equalTo(self.containerView).offset(-40)
         }
 
         self.authorLabel.snp.makeConstraints {
             (make) in
-            make.centerX.equalTo(self.view)
+            make.centerX.equalTo(self.containerView)
             make.top.equalTo(self.titleLabel.snp.bottom).offset(20)
-            make.width.equalTo(self.view).offset(-40)
+            make.width.equalTo(self.containerView).offset(-40)
         }
 
         self.descriptionView.snp.makeConstraints {
             (make) in
-            make.centerX.bottom.equalTo(self.view)
+            make.centerX.equalTo(self.containerView)
             make.top.equalTo(self.authorLabel.snp.bottom).offset(40)
-            make.width.equalTo(self.view).offset(-40)
+            make.width.equalTo(self.containerView).offset(-40)
+
+            let sizeThatFits = self.descriptionView.sizeThatFits(CGSize(width: self.view.frame.size.width,
+                                                                        height: CGFloat(MAXFLOAT)))
+            make.height.equalTo(sizeThatFits)
         }
 
     }
