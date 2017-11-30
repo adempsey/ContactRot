@@ -21,7 +21,7 @@ class ContactListViewController: UIViewController {
         tableView.delegate = self
         tableView.sectionHeaderHeight = 0
         tableView.sectionFooterHeight = 0
-        tableView.sectionIndexBackgroundColor = UIColor(white: 0.0, alpha: 0.4)
+        tableView.sectionIndexBackgroundColor = UIColor.contactRotIndexColor()
         tableView.sectionIndexColor = UIColor.contactRotBlue()
         tableView.register(ContactListTableViewCell.self,
                            forCellReuseIdentifier: self.reuseIdentifier)
@@ -220,7 +220,7 @@ extension ContactListViewController: UITableViewDelegate {
                                           height: 24))
         label.text = self.dataProvider.sectionTitles[section].capitalized
         label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.textColor = UIColor.contactRotLightGray()
+        label.textColor = UIColor.contactRotTextColor()
 
         view.addSubview(label)
 

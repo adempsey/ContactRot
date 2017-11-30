@@ -36,17 +36,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UIApplication.shared.statusBarStyle = .lightContent
 
-        UILabel.appearance().textColor = UIColor.contactRotLightGray()
+        UILabel.appearance().textColor = UIColor.contactRotTextColor()
 
-        UITableView.appearance().backgroundColor = UIColor.contactRotDarkGray()
+        UITableView.appearance().backgroundColor = UIColor.contactRotBackgroundColor()
 
-        UITextView.appearance().textColor = UIColor.contactRotLightGray()
+        UITextView.appearance().textColor = UIColor.contactRotTextColor()
         UITextView.appearance().tintColor = UIColor.contactRotBlue()
 
         UINavigationBar.appearance().barTintColor = UIColor.contactRotGray()
-        UINavigationBar.appearance().tintColor = UIColor.contactRotLightGray()
+        UINavigationBar.appearance().tintColor = UIColor.contactRotTextColor()
         UINavigationBar.appearance().titleTextAttributes = [
-            .foregroundColor: UIColor.contactRotLightGray()
+            .foregroundColor: UIColor.contactRotTextColor()
         ]
     }
 

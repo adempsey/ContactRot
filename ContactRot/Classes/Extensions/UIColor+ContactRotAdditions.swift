@@ -15,19 +15,31 @@ extension UIColor {
     }
 
     static func contactRotGray() -> UIColor {
-        return UIColor(hex: 0x383A3C)
+        return UIColor(hex: 0xFFFFFF)
     }
 
-    static func contactRotLightGray() -> UIColor {
-        return UIColor(hex: 0xD2D7D9)
+//    static func contactRotGray() -> UIColor {
+//        return UIColor(hex: 0x383A3C)
+//    }
+
+    static func contactRotTextColor() -> UIColor {
+        return UIColor(hex: 0x666666)
     }
 
-    static func contactRotDarkGray() -> UIColor {
-        return UIColor(hex: 0x25282A)
+//    static func contactRotTextColor() -> UIColor {
+//        return UIColor(hex: 0xD2D7D9)
+//    }
+
+    static func contactRotBackgroundColor() -> UIColor {
+        return UIColor(hex: 0xF0F0F0)
     }
 
-    static func contactRotDarkGray(alpha: Int) -> UIColor {
-        return UIColor(hex: 0x25282A, alpha: alpha)
+//    static func contactRotDarkGray() -> UIColor {
+//        return UIColor(hex: 0x25282A)
+//    }
+
+    static func contactRotIndexColor() -> UIColor {
+        return UIColor(hex: 0xFFFFFF).withAlphaComponent(0.4)
     }
 
     convenience init(r: Int, g: Int, b: Int, a: Int) {

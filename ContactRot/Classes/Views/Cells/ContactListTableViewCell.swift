@@ -66,8 +66,8 @@ class ContactListTableViewCell: UITableViewCell {
         self.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         self.contact = contact
         self.backgroundColor = UIColor.contactRotGray()
-        self.textLabel?.textColor = UIColor.contactRotLightGray()
-        self.detailTextLabel?.textColor = UIColor.contactRotLightGray()
+        self.textLabel?.textColor = UIColor.contactRotTextColor()
+        self.detailTextLabel?.textColor = UIColor.contactRotTextColor()
         
         self.contentView.addSubview(self.contactThumbnailView)
     }

@@ -20,7 +20,7 @@ class ContactViewController: UIViewController {
         label.text = self.contact?.fullNameWithEntropy
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 24)
-        label.textColor = UIColor.contactRotLightGray()
+        label.textColor = UIColor.contactRotTextColor()
         if let contact = self.contact {
             label.alpha = UIColor.alphaForDate(contact.lastContactDate)
         }
@@ -50,7 +50,7 @@ class ContactViewController: UIViewController {
         }
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = UIColor.contactRotLightGray()
+        label.textColor = UIColor.contactRotTextColor()
 
         return label
     }()
@@ -109,14 +109,14 @@ class ContactViewController: UIViewController {
         let scrollView = UIScrollView()
         scrollView.contentSize = CGSize(width: self.view.frame.size.width,
                                         height: self.view.frame.size.height)
-        scrollView.backgroundColor = UIColor.contactRotDarkGray()
+        scrollView.backgroundColor = UIColor.contactRotBackgroundColor()
 
         return scrollView
     }()
 
     private lazy var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.contactRotDarkGray()
+        view.backgroundColor = UIColor.contactRotBackgroundColor()
 
         return view
     }()
