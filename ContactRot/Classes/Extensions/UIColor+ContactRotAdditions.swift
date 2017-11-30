@@ -15,31 +15,23 @@ extension UIColor {
     }
 
     static func contactRotGray() -> UIColor {
-        return UIColor(hex: 0xFFFFFF)
+        let hex: Int = SettingsManager.sharedInstance.darkModeEnabled ? 0x383A3C : 0xFFFFFF
+        return UIColor(hex: hex)
     }
-
-//    static func contactRotGray() -> UIColor {
-//        return UIColor(hex: 0x383A3C)
-//    }
 
     static func contactRotTextColor() -> UIColor {
-        return UIColor(hex: 0x666666)
+        let hex: Int = SettingsManager.sharedInstance.darkModeEnabled ? 0xD2D7D9 : 0x666666
+        return UIColor(hex: hex)
     }
-
-//    static func contactRotTextColor() -> UIColor {
-//        return UIColor(hex: 0xD2D7D9)
-//    }
 
     static func contactRotBackgroundColor() -> UIColor {
-        return UIColor(hex: 0xF0F0F0)
+        let hex: Int = SettingsManager.sharedInstance.darkModeEnabled ? 0x25282A : 0xF0F0F0
+        return UIColor(hex: hex)
     }
 
-//    static func contactRotDarkGray() -> UIColor {
-//        return UIColor(hex: 0x25282A)
-//    }
-
     static func contactRotIndexColor() -> UIColor {
-        return UIColor(hex: 0xFFFFFF).withAlphaComponent(0.4)
+        let hex: Int = SettingsManager.sharedInstance.darkModeEnabled ? 0x000000 : 0xFFFFFF
+        return UIColor(hex: hex).withAlphaComponent(0.4)
     }
 
     convenience init(r: Int, g: Int, b: Int, a: Int) {

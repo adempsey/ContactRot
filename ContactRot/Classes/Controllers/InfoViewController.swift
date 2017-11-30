@@ -65,6 +65,7 @@ class InfoViewController: UIViewController {
         colorSwitch.addTarget(self,
                               action: #selector(colorSwitchToggled(_:)),
                               for: .valueChanged)
+        colorSwitch.isOn = SettingsManager.sharedInstance.darkModeEnabled
 
         return colorSwitch
     }()
@@ -198,7 +199,7 @@ class InfoViewController: UIViewController {
 
     @objc private func colorSwitchToggled(_ sender: Any) {
         if let senderSwitch = sender as? UISwitch, senderSwitch == self.colorSwitch {
-            print("changed to \(self.colorSwitch.isOn)")
+            SettingsManager.sharedInstance.darkModeEnabled = senderSwitch.isOn
         }
     }
 
