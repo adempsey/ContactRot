@@ -14,7 +14,7 @@ extension UIColor {
         return UIColor(hex: 0x557E97)
     }
 
-    static func contactRotGray() -> UIColor {
+    static func contactRotNeutral() -> UIColor {
         let hex: Int = SettingsManager.sharedInstance.darkModeEnabled ? 0x383A3C : 0xFFFFFF
         return UIColor(hex: hex)
     }

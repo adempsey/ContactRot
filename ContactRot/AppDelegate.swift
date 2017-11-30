@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITextView.appearance().textColor = UIColor.contactRotTextColor()
         UITextView.appearance().tintColor = UIColor.contactRotBlue()
 
-        UINavigationBar.appearance().barTintColor = UIColor.contactRotGray()
+        UINavigationBar.appearance().barTintColor = UIColor.contactRotNeutral()
         UINavigationBar.appearance().tintColor = UIColor.contactRotTextColor()
         UINavigationBar.appearance().titleTextAttributes = [
             .foregroundColor: UIColor.contactRotTextColor()

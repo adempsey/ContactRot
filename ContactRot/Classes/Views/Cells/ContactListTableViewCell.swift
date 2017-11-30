@@ -65,7 +65,7 @@ class ContactListTableViewCell: UITableViewCell {
     convenience init(_ contact: Contact, reuseIdentifier: String) {
         self.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         self.contact = contact
-        self.backgroundColor = UIColor.contactRotGray()
+        self.backgroundColor = UIColor.contactRotNeutral()
         self.textLabel?.textColor = UIColor.contactRotTextColor()
         self.detailTextLabel?.textColor = UIColor.contactRotTextColor()
         

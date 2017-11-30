@@ -122,7 +122,7 @@ extension ContactMethodsView: UITableViewDataSource {
             }
         }()
 
-        cell.backgroundColor = UIColor.contactRotGray()
+        cell.backgroundColor = UIColor.contactRotNeutral()
         cell.textLabel?.text = title
         cell.textLabel?.textColor = UIColor.contactRotTextColor()
 

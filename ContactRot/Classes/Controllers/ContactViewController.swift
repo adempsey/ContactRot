@@ -90,7 +90,7 @@ class ContactViewController: UIViewController {
 
     private lazy var contactInfoView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.contactRotGray()
+        view.backgroundColor = UIColor.contactRotNeutral()
         view.addSubview(self.contactThumbnailView)
         view.addSubview(self.nameLabel)
         view.addSubview(self.contactDateLabel)
