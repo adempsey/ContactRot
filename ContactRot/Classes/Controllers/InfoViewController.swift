@@ -95,7 +95,7 @@ class InfoViewController: UIViewController {
         textView.isEditable = false
         textView.font = UIFont.systemFont(ofSize: 14.0)
         textView.textColor = UIColor.contactRotTextColor()
-        textView.backgroundColor = UIColor.contactRotBackgroundColor()
+        textView.backgroundColor = UIColor.clear
         textView.textAlignment = .center
         textView.isScrollEnabled = false
 
@@ -201,6 +201,26 @@ class InfoViewController: UIViewController {
         if let senderSwitch = sender as? UISwitch, senderSwitch == self.colorSwitch {
             SettingsManager.sharedInstance.darkModeEnabled = senderSwitch.isOn
             AppearanceManager.sharedInstance.resetAppearances()
+            self.animateColorTransition()
+        }
+    }
+
+    // MARK: - Helper Methods
+
+    private func animateColorTransition() {
+        UIView.animate(withDuration: 0.25) {
+            self.navigationController?.navigationBar.barTintColor = UIColor.contactRotNeutral()
+            self.navigationController?.navigationBar.tintColor = UIColor.contactRotTextColor()
+            self.navigationController?.navigationBar.titleTextAttributes = [
+                .foregroundColor: UIColor.contactRotTextColor()
+            ]
+            self.view.backgroundColor = UIColor.contactRotBackgroundColor()
+            self.closeButton.tintColor = UIColor.contactRotTextColor()
+            self.containerView.backgroundColor = UIColor.contactRotBackgroundColor()
+            self.titleLabel.textColor = UIColor.contactRotTextColor()
+            self.authorLabel.textColor = UIColor.contactRotTextColor()
+            self.descriptionView.textColor = UIColor.contactRotTextColor()
+            self.colorSwitchLabel.textColor = UIColor.contactRotTextColor()
         }
     }
 
