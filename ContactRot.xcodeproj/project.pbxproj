@@ -18,6 +18,7 @@
 		8DB23BDB1F8F10E20034B1C4 /* ContactMethodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB23BDA1F8F10E20034B1C4 /* ContactMethodsViewController.swift */; };
 		8DB23BDE1F8FE3AE0034B1C4 /* ContactPhoneNumberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB23BDD1F8FE3AE0034B1C4 /* ContactPhoneNumberTableViewCell.swift */; };
 		8DBCB6541FD0B1E8003028C0 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBCB6531FD0B1E8003028C0 /* SettingsManager.swift */; };
+		8DBCB6561FD0B832003028C0 /* AppearanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBCB6551FD0B832003028C0 /* AppearanceManager.swift */; };
 		8DD1CA5D1F914C8900991D71 /* UIColor+ContactRotAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD1CA5C1F914C8900991D71 /* UIColor+ContactRotAdditions.swift */; };
 		8DD1CA611F915B2600991D71 /* ContactPermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD1CA601F915B2600991D71 /* ContactPermissionsViewController.swift */; };
 		8DD87D501F97119900B5A135 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD87D4F1F97119900B5A135 /* InfoViewController.swift */; };
@@ -43,6 +44,7 @@
 		8DB23BDA1F8F10E20034B1C4 /* ContactMethodsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactMethodsViewController.swift; sourceTree = "<group>"; };
 		8DB23BDD1F8FE3AE0034B1C4 /* ContactPhoneNumberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPhoneNumberTableViewCell.swift; sourceTree = "<group>"; };
 		8DBCB6531FD0B1E8003028C0 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
+		8DBCB6551FD0B832003028C0 /* AppearanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceManager.swift; sourceTree = "<group>"; };
 		8DD1CA5C1F914C8900991D71 /* UIColor+ContactRotAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ContactRotAdditions.swift"; sourceTree = "<group>"; };
 		8DD1CA601F915B2600991D71 /* ContactPermissionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPermissionsViewController.swift; sourceTree = "<group>"; };
 		8DD87D4F1F97119900B5A135 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				8DBCB6531FD0B1E8003028C0 /* SettingsManager.swift */,
+				8DBCB6551FD0B832003028C0 /* AppearanceManager.swift */,
 			);
 			name = Utilities;
 			path = Classes/Utilities;
@@ -357,6 +360,7 @@
 				8D91AD7D1F8C4B0200645D0F /* Contact.swift in Sources */,
 				8D8D37571FB3C954009BF17F /* String+ContactRotAdditions.swift in Sources */,
 				8DE0DD871F86DB0D00C5E0E2 /* AppDelegate.swift in Sources */,
+				8DBCB6561FD0B832003028C0 /* AppearanceManager.swift in Sources */,
 				8DD87D501F97119900B5A135 /* InfoViewController.swift in Sources */,
 				8D1821E41F8EFB8800DA9522 /* ContactMethodsView.swift in Sources */,
 				8DB23BDE1F8FE3AE0034B1C4 /* ContactPhoneNumberTableViewCell.swift in Sources */,

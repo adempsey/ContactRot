@@ -200,6 +200,7 @@ class InfoViewController: UIViewController {
     @objc private func colorSwitchToggled(_ sender: Any) {
         if let senderSwitch = sender as? UISwitch, senderSwitch == self.colorSwitch {
             SettingsManager.sharedInstance.darkModeEnabled = senderSwitch.isOn
+            AppearanceManager.sharedInstance.resetAppearances()
         }
     }
 

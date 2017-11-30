@@ -10,6 +10,11 @@ import UIKit
 
 extension UIColor {
 
+    static func contactRotStatusBarStyle() -> UIStatusBarStyle {
+        let style: UIStatusBarStyle = SettingsManager.sharedInstance.darkModeEnabled ? .lightContent : .default
+        return style
+    }
+
     static func contactRotBlue() -> UIColor {
         return UIColor(hex: 0x557E97)
     }

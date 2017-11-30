@@ -27,28 +27,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window.makeKeyAndVisible()
         }
 
-        self.setupAppearances()
+        AppearanceManager.sharedInstance.resetAppearances()
 
         return true
     }
 
-    private func setupAppearances() {
 
-        UIApplication.shared.statusBarStyle = .lightContent
-
-        UILabel.appearance().textColor = UIColor.contactRotTextColor()
-
-        UITableView.appearance().backgroundColor = UIColor.contactRotBackgroundColor()
-
-        UITextView.appearance().textColor = UIColor.contactRotTextColor()
-        UITextView.appearance().tintColor = UIColor.contactRotBlue()
-
-        UINavigationBar.appearance().barTintColor = UIColor.contactRotNeutral()
-        UINavigationBar.appearance().tintColor = UIColor.contactRotTextColor()
-        UINavigationBar.appearance().titleTextAttributes = [
-            .foregroundColor: UIColor.contactRotTextColor()
-        ]
-    }
 
 }
 
