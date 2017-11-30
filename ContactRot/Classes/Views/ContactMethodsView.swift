@@ -123,7 +123,13 @@ extension ContactMethodsView: UITableViewDataSource {
         }()
 
         cell.backgroundColor = UIColor.contactRotNeutral()
-        cell.textLabel?.text = title
+
+        if let contactInterval = self.contact?.lastContactDate.timeIntervalSinceNow {
+            cell.textLabel?.text = title.stringWithEntropy(contactInterval)
+        } else {
+            cell.textLabel?.text = title
+        }
+
         cell.textLabel?.textColor = UIColor.contactRotTextColor()
 
         if let phoneCell = cell as? ContactPhoneNumberTableViewCell {
