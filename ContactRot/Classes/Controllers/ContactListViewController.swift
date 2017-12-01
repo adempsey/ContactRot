@@ -19,6 +19,9 @@ class ContactListViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.dataSource = self
         tableView.delegate = self
+        if #available(iOS 11.0, *) {
+            tableView.insetsContentViewsToSafeArea = false
+        }
         tableView.sectionHeaderHeight = 0
         tableView.sectionFooterHeight = 0
         tableView.sectionIndexBackgroundColor = UIColor.contactRotIndexColor()
