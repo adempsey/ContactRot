@@ -138,7 +138,7 @@ class ContactViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = UIColor.contactRotBackgroundColor()
 
         self.view.addSubview(self.scrollView)
         self.scrollView.addSubview(self.containerView)
@@ -158,7 +158,7 @@ class ContactViewController: UIViewController {
         self.scrollView.snp.makeConstraints {
             (make) in
             make.top.equalTo(self.view)
-            make.bottom.equalTo(self.bottomLayoutGuide.snp.top)
+            make.bottom.equalTo(self.view)
             make.leading.trailing.equalTo(self.view)
         }
 
