@@ -63,10 +63,14 @@ class ContactListViewController: UIViewController {
 
     override func viewWillTransition(to size: CGSize,
                                      with coordinator: UIViewControllerTransitionCoordinator) {
+
+        coordinator.animate(alongsideTransition: { (_) in
+            // Sorry
+            self.tableView.reloadData()
+        })
+
         super.viewWillTransition(to: size, with: coordinator)
 
-        // Sorry
-        self.tableView.reloadData()
     }
 
     // MARK: - Layout

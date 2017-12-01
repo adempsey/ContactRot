@@ -85,7 +85,8 @@ class ContactListTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.contactThumbnailView.frame = CGRect(x: 14,
+
+        self.contactThumbnailView.frame = CGRect(x: self.separatorInset.left,
                                                  y: 8,
                                                  width: 44,
                                                  height: 44)
