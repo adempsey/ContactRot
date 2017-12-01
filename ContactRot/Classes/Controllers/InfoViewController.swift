@@ -133,6 +133,11 @@ class InfoViewController: UIViewController {
         self.createConstraints()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.resetDescriptionViewHeight()
+    }
+
     // MARK: - Layout
 
     private func createConstraints() {
@@ -171,7 +176,7 @@ class InfoViewController: UIViewController {
             make.top.equalTo(self.authorLabel.snp.bottom).offset(40)
             make.width.equalTo(self.containerView).offset(-40)
 
-            let sizeThatFits = self.descriptionView.sizeThatFits(CGSize(width: self.view.frame.size.width,
+            let sizeThatFits = self.descriptionView.sizeThatFits(CGSize(width: self.view.frame.size.width - 40,
                                                                         height: CGFloat(MAXFLOAT)))
             make.height.equalTo(sizeThatFits)
         }
@@ -189,6 +194,15 @@ class InfoViewController: UIViewController {
             make.top.equalTo(self.colorSwitchLabel.snp.bottom).offset(10)
         }
 
+    }
+
+    private func resetDescriptionViewHeight() {
+        self.descriptionView.snp.updateConstraints {
+            (make) in
+            let sizeThatFits = self.descriptionView.sizeThatFits(CGSize(width: self.view.frame.size.width - 40,
+                                                                        height: CGFloat(MAXFLOAT)))
+            make.height.equalTo(sizeThatFits)
+        }
     }
 
     // MARK: - Actions
