@@ -50,7 +50,7 @@ class InfoViewController: UIViewController {
 
     private lazy var colorSwitchLabel: UILabel = {
         let label = UILabel()
-        label.text = "Use dark mode"
+        label.text = SettingsManager.sharedInstance.darkModeEnabled ? "Use light mode" : "Use dark mode"
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 14.0)
         label.textColor = UIColor.contactRotTextColor()
@@ -235,6 +235,7 @@ class InfoViewController: UIViewController {
             self.authorLabel.textColor = UIColor.contactRotTextColor()
             self.descriptionView.textColor = UIColor.contactRotTextColor()
             self.colorSwitchLabel.textColor = UIColor.contactRotTextColor()
+            self.colorSwitchLabel.text = SettingsManager.sharedInstance.darkModeEnabled ? "Use light mode" : "Use dark mode"
         }
     }
 
