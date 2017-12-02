@@ -26,6 +26,15 @@ class InfoViewController: UIViewController {
         return view
     }()
 
+    private lazy var iconView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "icon-main")
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 98
+
+        return imageView
+    }()
+
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "ContactRot"
@@ -124,6 +133,7 @@ class InfoViewController: UIViewController {
         self.title = "About"
         self.navigationItem.leftBarButtonItem = self.closeButton
 
+        self.containerView.addSubview(self.iconView)
         self.containerView.addSubview(self.titleLabel)
         self.containerView.addSubview(self.authorLabel)
         self.containerView.addSubview(self.descriptionView)
@@ -156,10 +166,17 @@ class InfoViewController: UIViewController {
             make.bottom.equalTo(self.colorSwitch).offset(40)
         }
 
-        self.titleLabel.snp.makeConstraints {
+        self.iconView.snp.makeConstraints {
             (make) in
             make.centerX.equalTo(self.containerView)
             make.top.equalTo(self.containerView.snp.top).offset(40)
+            make.width.equalTo(196)
+        }
+
+        self.titleLabel.snp.makeConstraints {
+            (make) in
+            make.centerX.equalTo(self.containerView)
+            make.top.equalTo(self.iconView.snp.bottom).offset(40)
             make.width.equalTo(self.containerView).offset(-40)
         }
 
