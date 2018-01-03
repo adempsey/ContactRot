@@ -35,6 +35,15 @@ class ContainerViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
 
+    override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        get {
+            if let currentViewController = self.currentViewController {
+                return currentViewController.supportedInterfaceOrientations
+            }
+            return .portrait
+        }
+    }
+
     // MARK: - View Controller Lifecycle
 
     override func viewDidLoad() {

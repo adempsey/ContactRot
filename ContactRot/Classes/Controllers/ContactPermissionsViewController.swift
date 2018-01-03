@@ -22,6 +22,15 @@ class ContactPermissionsViewController: UIViewController {
 
     // MARK: - Private Properties
 
+    private lazy var iconView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "icon-main")
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
+
+        return imageView
+    }()
+
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
 
@@ -50,7 +59,7 @@ class ContactPermissionsViewController: UIViewController {
         }
 
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 0
 
         return label
@@ -74,6 +83,7 @@ class ContactPermissionsViewController: UIViewController {
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor.contactRotBackgroundColor()
+        self.view.addSubview(self.iconView)
         self.view.addSubview(self.titleLabel)
         self.view.addSubview(self.detailLabel)
         self.view.addSubview(self.grantAccessButton)
@@ -81,15 +91,36 @@ class ContactPermissionsViewController: UIViewController {
         self.createConstraints()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        self.iconView.layer.cornerRadius = self.iconView.bounds.size.width / 2
+    }
+
     // MARK: - Layout
 
+    override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        get {
+            return .portrait
+        }
+    }
+
     private func createConstraints() {
+
+        self.iconView.snp.makeConstraints {
+            (make) in
+            make.centerX.equalTo(self.view)
+            make.bottom.equalTo(self.titleLabel.snp.top).offset(-40)
+            make.top.equalTo(self.view).offset(80)
+            make.width.lessThanOrEqualTo(196)
+            make.height.equalTo(self.iconView.snp.width)
+        }
 
         self.titleLabel.snp.makeConstraints {
             (make) in
             make.width.equalTo(self.view).offset(-40)
             make.centerX.equalTo(self.view)
-            make.centerY.lessThanOrEqualTo(self.view)
+            make.centerY.equalTo(self.view)
         }
 
         self.detailLabel.snp.makeConstraints {

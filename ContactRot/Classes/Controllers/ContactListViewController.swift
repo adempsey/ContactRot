@@ -45,6 +45,12 @@ class ContactListViewController: UIViewController {
 
     // MARK: - View Controller Lifecycle
 
+    override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        get {
+            return .all
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
