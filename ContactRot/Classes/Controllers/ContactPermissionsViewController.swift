@@ -22,6 +22,20 @@ class ContactPermissionsViewController: UIViewController {
 
     // MARK: - Private Properties
 
+    private lazy var topIconSpacerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+
+        return view
+    }()
+
+    private lazy var bottomIconSpacerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+
+        return view
+    }()
+
     private lazy var iconView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "icon-main")
@@ -79,11 +93,19 @@ class ContactPermissionsViewController: UIViewController {
 
     // MARK: - View Controller Lifecycle
 
+    override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        get {
+            return .portrait
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor.contactRotBackgroundColor()
+        self.view.addSubview(self.topIconSpacerView)
         self.view.addSubview(self.iconView)
+        self.view.addSubview(self.bottomIconSpacerView)
         self.view.addSubview(self.titleLabel)
         self.view.addSubview(self.detailLabel)
         self.view.addSubview(self.grantAccessButton)
@@ -99,21 +121,29 @@ class ContactPermissionsViewController: UIViewController {
 
     // MARK: - Layout
 
-    override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        get {
-            return .portrait
-        }
-    }
-
     private func createConstraints() {
+
+        self.topIconSpacerView.snp.makeConstraints {
+            (make) in
+            make.left.right.equalTo(self.view)
+            make.top.equalTo(self.view).offset(40)
+            make.bottom.equalTo(self.iconView.snp.top)
+            make.height.greaterThanOrEqualTo(40)
+        }
 
         self.iconView.snp.makeConstraints {
             (make) in
             make.centerX.equalTo(self.view)
-            make.bottom.equalTo(self.titleLabel.snp.top).offset(-40)
-            make.top.equalTo(self.view).offset(80)
             make.width.lessThanOrEqualTo(196)
             make.height.equalTo(self.iconView.snp.width)
+        }
+
+        self.bottomIconSpacerView.snp.makeConstraints {
+            (make) in
+            make.left.right.equalTo(self.view)
+            make.bottom.equalTo(self.titleLabel.snp.top)
+            make.top.equalTo(self.iconView.snp.bottom)
+            make.height.equalTo(self.topIconSpacerView)
         }
 
         self.titleLabel.snp.makeConstraints {
