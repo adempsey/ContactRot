@@ -16,8 +16,8 @@ class Contact: Codable {
                                                           CNContactEmailAddressesKey as CNKeyDescriptor,
                                                           CNContactThumbnailImageDataKey as CNKeyDescriptor]
 
-    let givenName: String
-    let familyName: String
+    var givenName: String
+    var familyName: String
     let phoneNumbers: [String]
     let emailAddresses: [String]
     let contactID: String

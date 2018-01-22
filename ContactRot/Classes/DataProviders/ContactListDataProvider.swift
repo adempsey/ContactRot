@@ -44,6 +44,20 @@ class ContactListDataProvider: NSObject {
             contacts.append(contact)
         }
 
+        let jsonPath = Bundle.main.path(forResource: "names", ofType: "json")!
+        let jsonData = try! Data(contentsOf: URL(fileURLWithPath:jsonPath), options: .mappedIfSafe)
+        let fakeNameJSONDict = (try! JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves))
+
+        let namesArray: [Dictionary<String, String>] = (fakeNameJSONDict as! Dictionary<String, Array<Dictionary<String, String>>>)["names"]!
+        print(namesArray)
+
+        contacts = Array(contacts.prefix(4000))
+
+        for idx in 0...contacts.count - 1 {
+            contacts[idx].givenName = namesArray[idx % 4000]["first"]!;
+            contacts[idx].familyName = namesArray[idx % 4000]["last"]!;
+        }
+
         try! self.dataManager.saveNew(contacts: contacts)
 
         contacts = contacts.filter {
