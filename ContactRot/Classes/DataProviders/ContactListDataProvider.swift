@@ -46,7 +46,7 @@ class ContactListDataProvider: NSObject {
         try! self.dataManager.saveNew(contacts: contacts)
 
         contacts = contacts.filter {
-            $0.lastContactDate.timeIntervalSinceNow < Date.maxTimeFromLastContact()
+            return abs($0.lastContactDate.timeIntervalSinceNow) < Date.maxTimeFromLastContact()
         }
 
         let newContacts = try! self.dataManager.newContacts()
