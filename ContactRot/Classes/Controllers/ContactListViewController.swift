@@ -17,6 +17,7 @@ class ContactListViewController: UIViewController {
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.backgroundView = self.backgroundView
         tableView.dataSource = self
         tableView.delegate = self
         if #available(iOS 11.0, *) {
@@ -43,6 +44,25 @@ class ContactListViewController: UIViewController {
         return button
     }()
 
+    private lazy var backgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+
+        return view
+    }()
+
+    private lazy var emptyTableTextLabel: UILabel = {
+        let label = UILabel()
+        label.text = "No contacts found :("
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 14.0)
+        label.textColor = UIColor.contactRotTextColor()
+        label.numberOfLines = 0
+        label.alpha = self.dataProvider.count > 0 ? 0.0 : 1.0
+
+        return label
+    }()
+
     // MARK: - View Controller Lifecycle
 
     override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {
@@ -58,6 +78,7 @@ class ContactListViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = self.infoButton
 
         self.view.addSubview(self.tableView)
+        self.backgroundView.addSubview(self.emptyTableTextLabel)
         self.createConstraints()
     }
 
@@ -65,9 +86,11 @@ class ContactListViewController: UIViewController {
         super.viewWillAppear(animated)
         self.dataProvider.retrieve()
         self.tableView.reloadData()
+        self.emptyTableTextLabel.alpha = self.dataProvider.count > 0 ? 0.0 : 1.0
 
         // Reset colors that may have changed
         self.tableView.sectionIndexBackgroundColor = UIColor.contactRotIndexColor()
+        self.emptyTableTextLabel.textColor = UIColor.contactRotTextColor()
     }
 
     override func viewWillTransition(to size: CGSize,
@@ -85,8 +108,20 @@ class ContactListViewController: UIViewController {
     // MARK: - Layout
 
     private func createConstraints() {
-        self.tableView.snp.makeConstraints { (make) -> Void in
+        self.tableView.snp.makeConstraints {
+            (make) in
             make.edges.equalTo(self.view)
+        }
+
+        self.backgroundView.snp.makeConstraints {
+            (make) in
+            make.edges.equalTo(self.view)
+        }
+
+        self.emptyTableTextLabel.snp.makeConstraints {
+            (make) in
+            make.center.equalTo(self.backgroundView)
+            make.width.equalTo(self.backgroundView)
         }
     }
 
