@@ -59,7 +59,9 @@ class InfoViewController: UIViewController {
 
     private lazy var colorSwitchLabel: UILabel = {
         let label = UILabel()
-        label.text = SettingsManager.sharedInstance.darkModeEnabled ? "Use light mode" : "Use dark mode"
+        label.text = SettingsManager.sharedInstance.darkModeEnabled ?
+            "Use light mode" :
+            "Use dark mode"
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 14.0)
         label.textColor = UIColor.contactRotTextColor()
@@ -77,6 +79,30 @@ class InfoViewController: UIViewController {
         colorSwitch.isOn = SettingsManager.sharedInstance.darkModeEnabled
 
         return colorSwitch
+    }()
+
+    private lazy var hardModeSwitchLabel: UILabel = {
+        let label = UILabel()
+        label.text = SettingsManager.sharedInstance.hardModeEnabled ?
+            "Use easy mode (only show people contacted within the past 6 months)" :
+            "Use hard mode (only show people contacted within the past two weeks)"
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 14.0)
+        label.textColor = UIColor.contactRotTextColor()
+        label.numberOfLines = 0
+
+        return label
+    }()
+
+    private lazy var hardModeSwitch: UISwitch = {
+        let hardModeSwitch = UISwitch()
+        hardModeSwitch.onTintColor = UIColor.contactRotBlue()
+        hardModeSwitch.addTarget(self,
+                              action: #selector(hardModeSwitchToggled(_:)),
+                              for: .valueChanged)
+        hardModeSwitch.isOn = SettingsManager.sharedInstance.hardModeEnabled
+
+        return hardModeSwitch
     }()
 
     private lazy var descriptionView: UITextView = {
@@ -137,6 +163,8 @@ class InfoViewController: UIViewController {
         self.containerView.addSubview(self.titleLabel)
         self.containerView.addSubview(self.authorLabel)
         self.containerView.addSubview(self.descriptionView)
+        self.containerView.addSubview(self.hardModeSwitchLabel)
+        self.containerView.addSubview(self.hardModeSwitch)
         self.containerView.addSubview(self.colorSwitchLabel)
         self.containerView.addSubview(self.colorSwitch)
 
@@ -198,10 +226,23 @@ class InfoViewController: UIViewController {
             make.height.equalTo(sizeThatFits)
         }
 
-        self.colorSwitchLabel.snp.makeConstraints {
+        self.hardModeSwitchLabel.snp.makeConstraints {
             (make) in
             make.centerX.equalTo(self.containerView)
             make.top.equalTo(self.descriptionView.snp.bottom).offset(40)
+            make.width.equalTo(self.containerView)
+        }
+
+        self.hardModeSwitch.snp.makeConstraints {
+            (make) in
+            make.centerX.equalTo(self.containerView)
+            make.top.equalTo(self.hardModeSwitchLabel.snp.bottom).offset(10)
+        }
+
+        self.colorSwitchLabel.snp.makeConstraints {
+            (make) in
+            make.centerX.equalTo(self.containerView)
+            make.top.equalTo(self.hardModeSwitch.snp.bottom).offset(40)
             make.width.equalTo(self.containerView)
         }
 
@@ -236,6 +277,13 @@ class InfoViewController: UIViewController {
         }
     }
 
+    @objc private func hardModeSwitchToggled(_ sender: Any) {
+        if let senderSwitch = sender as? UISwitch, senderSwitch == self.hardModeSwitch {
+            SettingsManager.sharedInstance.hardModeEnabled = senderSwitch.isOn
+            self.animateHardModeTextTransition()
+        }
+    }
+
     // MARK: - Helper Methods
 
     private func animateColorTransition() {
@@ -251,8 +299,19 @@ class InfoViewController: UIViewController {
             self.titleLabel.textColor = UIColor.contactRotTextColor()
             self.authorLabel.textColor = UIColor.contactRotTextColor()
             self.descriptionView.textColor = UIColor.contactRotTextColor()
+            self.hardModeSwitchLabel.textColor = UIColor.contactRotTextColor()
             self.colorSwitchLabel.textColor = UIColor.contactRotTextColor()
-            self.colorSwitchLabel.text = SettingsManager.sharedInstance.darkModeEnabled ? "Use light mode" : "Use dark mode"
+            self.colorSwitchLabel.text = SettingsManager.sharedInstance.darkModeEnabled ?
+                "Use light mode" :
+                "Use dark mode"
+        }
+    }
+
+    private func animateHardModeTextTransition() {
+        UIView.animate(withDuration: 0.25) {
+            self.hardModeSwitchLabel.text = SettingsManager.sharedInstance.hardModeEnabled ?
+                "Use easy mode (only show people contacted within the past 6 months)" :
+                "Use hard mode (only show people contacted within the past two weeks)"
         }
     }
 

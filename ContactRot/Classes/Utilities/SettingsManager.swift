@@ -18,6 +18,7 @@ class SettingsManager: NSObject {
 
     private enum SettingsKeys: String {
         case DarkModeEnabled = "cr_setting_dark_mode_enabled"
+        case HardModeEnabled = "cr_setting_hard_mode_enabled"
     }
 
     private var userDefaults: UserDefaults {
@@ -35,6 +36,16 @@ class SettingsManager: NSObject {
 
         set(newValue) {
             self.userDefaults.set(newValue, forKey: SettingsKeys.DarkModeEnabled.rawValue)
+        }
+    }
+
+    public var hardModeEnabled: Bool {
+        get {
+            return self.userDefaults.bool(forKey: SettingsKeys.HardModeEnabled.rawValue)
+        }
+
+        set(newValue) {
+            self.userDefaults.set(newValue, forKey: SettingsKeys.HardModeEnabled.rawValue)
         }
     }
 

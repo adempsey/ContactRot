@@ -32,6 +32,12 @@ extension Date {
                                                  Indicates that the time that someone was last
                                                  contacted was within the past week
                                               """)
+        } else if deltaInterval < Date.DateInterval.Week.rawValue * 2 {
+            return NSLocalizedString("within the past two weeks",
+                                     comment: """
+                                                 Indicates that the time that someone was last
+                                                 contacted was within the past two weeks
+                                              """)
         } else if deltaInterval < Date.DateInterval.Month.rawValue {
             return NSLocalizedString("within the past month",
                                      comment: """
@@ -51,6 +57,12 @@ extension Date {
                                                  contacted was over 6 months ago.
                                               """)
         }
+    }
+
+    static func maxTimeFromLastContact() -> TimeInterval {
+        return SettingsManager.sharedInstance.hardModeEnabled ?
+            Date.DateInterval.Week.rawValue * 2 :
+            Date.DateInterval.HalfYear.rawValue
     }
 
 }

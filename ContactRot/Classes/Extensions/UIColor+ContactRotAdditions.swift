@@ -66,8 +66,8 @@ extension UIColor {
     static func alphaForDate(_ date: Date) -> CGFloat {
         let minAlpha = 0.2 as CGFloat
         let dateInterval = CGFloat(abs(date.timeIntervalSinceNow))
-        let halfYearInterval = CGFloat(Date.DateInterval.HalfYear.rawValue)
-        let calculatedAlpha = 1.0 - (dateInterval / halfYearInterval)
+        let maxInterval = CGFloat(Date.maxTimeFromLastContact())
+        let calculatedAlpha = 1.0 - (dateInterval / maxInterval)
 
         return fmax(calculatedAlpha, minAlpha)
     }
